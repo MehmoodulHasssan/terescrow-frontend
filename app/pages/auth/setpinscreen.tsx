@@ -6,7 +6,8 @@ import FONTS from '@/constants/fonts';
 import { useTheme } from '@/contexts/themeContext'; // Update the path as needed for your theme hook
 import CustomModal from './CountriesModal';
 
-const SetPinScreen: React.FC = (props) => {
+
+const SetPinScreen: React.FC<{title: string}> = (props) => {
   const [pin, setPin] = useState<string[]>([]);
   const { dark } = useTheme();
 
