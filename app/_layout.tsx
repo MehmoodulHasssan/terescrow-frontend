@@ -40,6 +40,29 @@ export default function RootLayout() {
         />
         <Stack.Screen name="signin" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
+        <Stack.Screen name="sellgiftcard" options={{ headerShown: false }}  />
+        <Stack.Screen name="buygiftcard" options={{ headerShown: false }}  />
+        <Stack.Screen name="sellcrypto" options={{ headerShown: false }}  />
+        <Stack.Screen name="buycrypto" options={{ headerShown: false }}  />
+        <Stack.Screen name="amazon" options={{ headerShown: false }}  />
+        <Stack.Screen name="americanexpress" options={{ headerShown: false }}  />
+        <Stack.Screen name="connectingagent" options={{ headerShown: false }}  />
+        <Stack.Screen name="ebaycard" options={{ headerShown: false }}  />
+        <Stack.Screen name="visacard" options={{ headerShown: false }}  />
+        <Stack.Screen name="footlocker" options={{ headerShown: false }}  />
+        <Stack.Screen name="googleplaycard" options={{ headerShown: false }}  />
+        <Stack.Screen name="itunescard" options={{ headerShown: false }}  />
+        <Stack.Screen name="nikecard" options={{ headerShown: false }}  />
+        <Stack.Screen name="btc" options={{ headerShown: false }}  />
+        <Stack.Screen name="usdt" options={{ headerShown: false }}  />
+        <Stack.Screen name="eth" options={{ headerShown: false }}  />
+        <Stack.Screen name="solana" options={{ headerShown: false }}  />
+        <Stack.Screen name="shibuinu" options={{ headerShown: false }}  />
+        <Stack.Screen name="dogecoin" options={{ headerShown: false }}  />
+        <Stack.Screen name="usdc" options={{ headerShown: false }}  />
+        <Stack.Screen name="bnb" options={{ headerShown: false }}  />
+        <Stack.Screen name="toncoin" options={{ headerShown: false }}  />
+        <Stack.Screen name="tron" options={{ headerShown: false }}  />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
