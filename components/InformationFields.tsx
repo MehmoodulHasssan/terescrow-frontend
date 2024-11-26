@@ -1,5 +1,7 @@
 import { COLORS } from "@/constants";
+import { useTheme } from "@/contexts/themeContext";
 import React, { useState } from "react";
+import { Colors } from "@/constants/Colors";
 import {
   Text,
   View,
@@ -9,6 +11,7 @@ import {
 } from "react-native";
 
 const InformationFields = () => {
+  const { dark } = useTheme();
   const [counter, setCounter] = useState(0);
 
   const increaseCounter = () => setCounter(counter + 1);
@@ -18,7 +21,7 @@ const InformationFields = () => {
     <View style={styles.container}>
       {/* Input with Counter */}
       <View style={styles.inputWithCounter}>
-        <Text style={styles.mainText}>How many cards?</Text>
+        <Text style={[styles.mainText, dark ? { color: Colors.dark.text } : { color: Colors.light.text },]}>How many cards?</Text>
         <View style={styles.counterContainer}>
           <TouchableOpacity
             onPress={decreaseCounter}
@@ -27,7 +30,7 @@ const InformationFields = () => {
             <Text style={[styles.counterText, styles.specialCase]}>-</Text>
           </TouchableOpacity>
 
-          <Text style={styles.counterValue}>{counter}</Text>
+          <Text style={[styles.counterValue, dark ? { color: Colors.dark.text } : { color: Colors.light.text },]}>{counter}</Text>
           <TouchableOpacity
             onPress={increaseCounter}
             style={styles.counterButton}
@@ -39,9 +42,10 @@ const InformationFields = () => {
 
       {/* Regular Input */}
       <TextInput
-        style={styles.input}
+        style={[styles.input, dark ? { color: Colors.dark.text } : { color: Colors.light.text },]}
+        keyboardType="numeric"
         placeholder="Enter amount in USD"
-        placeholderTextColor="#888"
+        placeholderTextColor={"#888"}
       />
     </View>
   );

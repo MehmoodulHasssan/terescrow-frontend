@@ -2,9 +2,12 @@ import { icons } from "@/constants";
 import { FlatList, View, Text, StyleSheet } from "react-native";
 import QuickBoxItem from "./QuickBoxItem";
 import { Route, useRouter } from "expo-router";
+import { useTheme } from "@/contexts/themeContext";
+import { Colors } from "@/constants/Colors";
 
 const QuickAction = () => {
   const router = useRouter();
+  const { dark } = useTheme();
   const data = [
     {
       icon: icons.gift,
@@ -38,7 +41,14 @@ const QuickAction = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.mainHeading}>Quick Actions</Text>
+        <Text
+          style={[
+            styles.mainHeading,
+            dark ? { color: Colors.dark.text } : { color: Colors.light.text }
+          ]}
+        >
+          Quick Actions
+        </Text>
       </View>
       <FlatList
         data={data}

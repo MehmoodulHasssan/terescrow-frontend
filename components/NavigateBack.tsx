@@ -1,14 +1,16 @@
 import { StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
-import { COLORS, icons } from "@/constants";
+import { icons } from "@/constants";
 import { Pressable } from "react-native";
 import { useRouter } from "expo-router";
+import { useTheme } from "@/contexts/themeContext";
+import { Colors } from "@/constants/Colors";
 
 const NavigateBack: React.FC<{ text: string }> = ({ text }) => {
   const router = useRouter();
+  const { dark } = useTheme();
 
   const backPressHandler = () => {
-    console.log("Navigating back...");
     router.back();
   };
 
@@ -21,11 +23,26 @@ const NavigateBack: React.FC<{ text: string }> = ({ text }) => {
         accessibilityLabel="Go back"
         accessibilityRole="button"
       >
-        <Image source={icons.arrowBack} style={styles.backIcon} />
+        <Image
+          source={icons.arrowBack}
+          style={[
+            styles.backIcon,
+            dark
+              ? { tintColor: Colors.dark.tint }
+              : { tintColor: Colors.light.tint },
+          ]}
+        />
       </Pressable>
 
       <View style={styles.mainTextContainer}>
-        <Text style={styles.mainText}>{text}</Text>
+        <Text
+          style={[
+            styles.mainText,
+            dark ? { color: Colors.dark.text } : { color: Colors.light.text },
+          ]}
+        >
+          {text}
+        </Text>
       </View>
     </View>
   );
@@ -46,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 4,
-    position: 'relative',
+    position: "relative",
     zIndex: 1,
   },
   mainTextContainer: {

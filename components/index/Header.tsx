@@ -1,17 +1,42 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { useTheme } from "@/contexts/themeContext";
-import { COLORS, icons } from "@/constants";
+import { icons } from "@/constants";
+import { Colors } from "@/constants/Colors";
+import { COLORS } from "@/constants";
 const Header = () => {
   const { dark } = useTheme();
   return (
     <View style={styles.container}>
       <View>
-        <Text style={{ fontWeight: "bold", marginBottom: 4, fontSize: 16, }}>Hi, John!</Text>
-        <Text style={{ fontFamily: 'Regular', color: COLORS.greyscale600 }}>Welcome to Tercescrow</Text>
+        <Text
+          style={[
+            styles.mainText,
+            dark ? { color: Colors.dark.text } : { color: Colors.light.text },
+          ]}
+        >
+          Hi, John!
+        </Text>
+        <Text
+          style={[
+            styles.subText,
+            dark ? { color: Colors.dark.text } : { color: Colors.light.text },
+          ]}
+        >
+          Welcome to Tercescrow
+        </Text>
       </View>
       <View>
-        <Image source={icons.notification} style={styles.image} contentFit='contain' />
+        <Image
+          source={icons.notification}
+          style={[
+            styles.image,
+            dark
+              ? { tintColor: Colors.dark.tint }
+              : { tintColor: Colors.light.tint },
+          ]}
+          contentFit="contain"
+        />
       </View>
     </View>
   );
@@ -29,7 +54,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   mainText: {
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 4,
+  },
+  subText: {
+    fontFamily: "Regular",
+    color: COLORS.greyscale600,
   },
   image: {
     flex: 1,

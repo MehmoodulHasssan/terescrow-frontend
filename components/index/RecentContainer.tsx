@@ -59,7 +59,7 @@ const RecentContainer = () => {
         )}
         keyExtractor={(item) => item.key}
         numColumns={1}
-        contentContainerStyle={{ paddingBottom: 40 }} 
+        contentContainerStyle={{ paddingBottom: 20 }} 
       />
     </View>
   );
