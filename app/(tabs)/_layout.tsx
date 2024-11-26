@@ -7,14 +7,25 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { useTheme } from '@/contexts/themeContext';
+import { COLORS } from '@/constants';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { dark } = useTheme();
+
+  // Tab colors based on dark mode
+  const tabBarActiveTintColor = dark ? COLORS.white : Colors[colorScheme ?? 'light'].tint;
+  const tabBarInactiveTintColor = dark ? COLORS.grayscale400 : Colors[colorScheme ?? 'light'].tint;
+  const tabBarActiveBackgroundColor = dark ? COLORS.black : COLORS.white;
+  const tabBarBackgroundColor = dark ? COLORS.black : COLORS.white;
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: tabBarActiveTintColor,
+        tabBarInactiveTintColor: tabBarInactiveTintColor,
+        tabBarActiveBackgroundColor: tabBarActiveBackgroundColor,
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
@@ -22,8 +33,11 @@ export default function TabLayout() {
           ios: {
             // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
+            backgroundColor: tabBarBackgroundColor,
           },
-          default: {},
+          default: {
+            backgroundColor: tabBarBackgroundColor,
+          },
         }),
       }}
     >
@@ -67,15 +81,6 @@ export default function TabLayout() {
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="+not-found"
-        options={{
-          title: 'Oops!',
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="chevron.right" color={color} />
-          ),
-        }}
-      /> */}
     </Tabs>
   );
 }
