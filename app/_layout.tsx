@@ -38,13 +38,21 @@ export default function RootLayout() {
           name="setpinscreen"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="(tabs)/index"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="setnewpassword" options={{ headerShown: false }} />
+        <Stack.Screen name="forgetpassword" options={{ headerShown: false }} />
+        <Stack.Screen name="successmodal" options={{ headerShown: false }} />
         <Stack.Screen name="signin" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
-        <Stack.Screen name="sellgiftcard" options={{ headerShown: false }}  />
-        <Stack.Screen name="buygiftcard" options={{ headerShown: false }}  />
+        <Stack.Screen name="sellgiftcard" options={{ headerShown: false }} />
+        <Stack.Screen name="buygiftcard" options={{ headerShown: false }} />
         <Stack.Screen name="sellcrypto" options={{ headerShown: false }}  />
         <Stack.Screen name="buycrypto" options={{ headerShown: false }}  />
         <Stack.Screen name="amazon" options={{ headerShown: false }}  />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="americanexpress" options={{ headerShown: false }}  />
         <Stack.Screen name="connectingagent" options={{ headerShown: false }}  />
         <Stack.Screen name="ebaycard" options={{ headerShown: false }}  />

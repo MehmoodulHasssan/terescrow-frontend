@@ -427,11 +427,13 @@ const dollarCoin = require('../assets/icons/dollar-coin.png') as string;
 const bnb = require('../assets/icons/bnb.png') as string;
 const tonCoin = require('../assets/icons/ton-coin.png') as string;
 const tron = require('../assets/icons/tron.png') as string;
+const tickMarked = require('../assets/icons/tick-marked.png') as string;
 
 
 // const eyeFill = require('../assets/icons/eyefill.png') as string;
 
 const icons = {
+  tickMarked,
   btc,
   usdt,
   eth,

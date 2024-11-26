@@ -150,11 +150,14 @@ const Input: FC<InputProps> = (props) => {
               {
                 top: labelPosition,
                 fontSize: isFocused || props.value ? 12 : 16,
-                color: props.errorText
-                  ? COLORS.red
-                  : isFocused
-                  ? COLORS.primary
-                  : "#BCBCBC", 
+                color:
+                  props.errorText
+                    ? COLORS.red
+                    : isFocused || props.value
+                    ? COLORS.primary
+                    : dark
+                    ? COLORS.grayscale200
+                    : COLORS.greyscale600,
               },
             ]}
             onPress={() => inputRef.current?.focus()}
@@ -215,7 +218,6 @@ const styles = StyleSheet.create({
     top: 13,
     bottom: 5,
     fontSize: 16,
-    color: "#BCBCBC",
     transitionProperty: "all",
     transitionDuration: "0.3s",
     transitionTimingFunction: "ease-in-out",
@@ -223,7 +225,7 @@ const styles = StyleSheet.create({
   labelFocused: {
     top: -10,
     fontSize: 12,
-    },
+  },
   checkboxContainer: {
     flexDirection: "row",
     alignItems: "center",

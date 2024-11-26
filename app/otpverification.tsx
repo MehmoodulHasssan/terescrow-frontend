@@ -12,11 +12,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "../utils/Button";
 import { COLORS, icons } from "@/constants";
 import { useTheme } from "@/contexts/themeContext";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { Image } from "expo-image";
 import FONTS from "@/constants/fonts";
 import Input from "./customInput";
+import { useSearchParams } from "expo-router/build/hooks";
 import { ThemedView } from "@/components/ThemedView";
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { opacity } from "react-native-reanimated/lib/typescript/Colors";
 
 const OTPVerification = () => {
   const { goBack } = useNavigation();
@@ -24,6 +27,7 @@ const OTPVerification = () => {
   const [otp, setOtp] = useState("");
   const [timerOut, setTimerOut] = useState(false);
   const { colors, dark } = useTheme();
+  const {push} = useRouter()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,7 +52,12 @@ const OTPVerification = () => {
     if (otp.length === 4) {
       console.log(`Verifying OTP: ${otp}`);
     }
+    push({ pathname: '/setpinscreen', params: { title: 'Set your Pin' }})
   };
+
+  const themeStyle = {
+    opacity: otp.length === 4 ? 1 : 0.6,
+  }
 
   return (
     <SafeAreaView style={[styles.area, { backgroundColor: colors.background }]}>
@@ -60,10 +69,11 @@ const OTPVerification = () => {
           <View style={styles.headerContainer}>
             <TouchableOpacity onPress={goBack}>
               <Image
-                source={icons.back}
+                source={icons.arrowBack}
                 style={{
                   width: 20,
                   height: 20,
+                  tintColor: dark ? COLORS.white : COLORS.dark1,
                 }}
               />
             </TouchableOpacity>
@@ -102,7 +112,7 @@ const OTPVerification = () => {
             title="Continue"
             filled
             disabled={otp.length !== 4}
-            style={styles.button}
+            style={[styles.button, themeStyle]}
             onPress={handleVerifyOTP}
           />
           <TouchableOpacity
@@ -135,7 +145,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingVertical: 10,
     alignItems: "flex-start",
   },
   contentContainer: {
