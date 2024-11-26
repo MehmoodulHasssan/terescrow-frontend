@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NavigateBack from "@/components/NavigateBack";
 import CardCom from "@/components/CardCom";
@@ -10,28 +10,24 @@ import { Colors } from "@/constants/Colors";
 const Amazon = () => {
   const { dark } = useTheme();
   return (
-    <SafeAreaView
-      style={[
-        { flex: 1 },
-        dark
-          ? { backgroundColor: Colors.dark.background }
-          : { backgroundColor: Colors.light.background },
-      ]}
-    >
+    <SafeAreaView style={{ flex: 1 }}>
       <NavigateBack text="Amazon" />
       <CardCom card={images.amazonCard} />
-      <View
-        style={{
-          height: "62%",
-          justifyContent: "space-between",
-          flexDirection: "column",
-        }}
-      >
+      <View style={styles.mainContent}>
         <InformationFields />
         <CustomProceed />
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  mainContent: {
+    height: '62%', 
+    marginBottom: 20 , 
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+});
 
 export default Amazon;

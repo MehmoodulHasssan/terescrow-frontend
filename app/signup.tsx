@@ -10,33 +10,30 @@ import CustomModal from "./CountriesModal";
 import { Image } from "expo-image";
 import Button from "../utils/Button";
 import Checkbox from "expo-checkbox";
+import { useRouter } from "expo-router";
+import * as Yup from "yup";
 
 const SignUp = () => {
   const { dark } = useTheme();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalType, setModalType] = useState<"gender" | "country">("country");
   const [isChecked, setChecked] = useState(false);
+  const { push } = useRouter();
 
-  // Handle country selection
   function handleCountrySelect(country: string, setFieldValue: Function) {
-    setFieldValue("country", country); // Update the form field
-    setIsModalVisible(false); // Close modal after selection
+    setFieldValue("country", country);
+    setIsModalVisible(false);
   }
 
   // Handle gender selection
   function handleGenderSelect(gender: string, setFieldValue: Function) {
-    setFieldValue("gender", gender); // Update the form field
-    setIsModalVisible(false); // Close modal after selection
+    setFieldValue("gender", gender);
+    setIsModalVisible(false);
   }
 
-  // Function to handle the country or gender button press
   const handleFieldPress = (fieldType: "country" | "gender") => {
-    setModalType(fieldType); // Set the modal type (country or gender)
-    setIsModalVisible(true); // Open the modal
-  };
-
-  const handleSubmit = (values: any) => {
-    console.log(values);
+    setModalType(fieldType);
+    setIsModalVisible(true);
   };
 
   return (
@@ -93,7 +90,10 @@ const SignUp = () => {
             country: "",
           }}
           validationSchema={validationSignUpSchema}
-          onSubmit={handleSubmit}
+          onSubmit={(values) => {
+            console.log(values);
+            push("/otpverification");
+          }}
         >
           {({
             handleChange,
@@ -102,6 +102,7 @@ const SignUp = () => {
             errors,
             touched,
             setFieldValue,
+            handleSubmit,
           }) => {
             console.log(values);
             return (
@@ -148,7 +149,6 @@ const SignUp = () => {
                   id="email"
                 />
 
-                {/* Country text container */}
                 <TouchableOpacity onPress={() => handleFieldPress("country")}>
                   <View
                     style={{
@@ -160,7 +160,6 @@ const SignUp = () => {
                       alignItems: "center",
                       justifyContent: "space-between",
                       borderRadius: SIZES.padding,
-                      marginBottom: SIZES.padding2,
                     }}
                   >
                     {/* Country Text */}
@@ -173,7 +172,7 @@ const SignUp = () => {
                           : dark
                           ? COLORS.greyscale300
                           : COLORS.greyscale600,
-                        fontSize: 16, // Adjust font size for better readability
+                        fontSize: 16,
                       }}
                     >
                       {values.country || "Select Country"}
@@ -181,16 +180,29 @@ const SignUp = () => {
 
                     {/* Arrow Icon */}
                     <Image
-                      source={icons.arrowRight} // Replace with your actual icon source
+                      source={icons.arrowRight}
                       style={{
                         width: 18,
                         height: 18,
                         tintColor: dark
                           ? COLORS.greyscale300
-                          : COLORS.greyscale600, // Adjust icon color based on theme
+                          : COLORS.greyscale600,
                       }}
                     />
                   </View>
+
+                  {errors.country && touched.country && (
+                    <Text
+                      style={{
+                        color: COLORS.red,
+                        marginTop: 5,
+                        fontSize: 12, 
+                        marginBottom: SIZES.padding2,
+                      }}
+                    >
+                      {errors.country}
+                    </Text>
+                  )}
                 </TouchableOpacity>
 
                 <Input
@@ -319,11 +331,12 @@ const SignUp = () => {
                   }}
                 >
                   <Checkbox
-                    style={{borderRadius: 50, marginTop: 3}}
+                    style={{ borderRadius: 50, marginTop: 3 }}
                     id="termsAccepted"
                     value={values.termsAccepted}
-                    onValueChange={(value) => setFieldValue("termsAccepted", value)}
-
+                    onValueChange={(value) =>
+                      setFieldValue("termsAccepted", value)
+                    }
                     // onValueChange={handleChange("") as unknown as ((value: boolean) => void)}
                     color={isChecked ? COLORS.primary : undefined}
                   />
@@ -358,14 +371,17 @@ const SignUp = () => {
                     </Text>
                   </Text>
                 </View>
+                {/* <Button onPress={handleSubmit} title="Create an Account"/> */}
+                <View style={{ marginTop: 25, width: "100%" }}>
+                  <Button
+                    title="Create an Account"
+                    onPress={handleSubmit as () => void}
+                  />
+                </View>
               </View>
             );
           }}
         </Formik>
-
-        <View style={{ marginTop: 25, width: "100%" }}>
-          <Button title="Create an Account" onPress={handleSubmit} />
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
