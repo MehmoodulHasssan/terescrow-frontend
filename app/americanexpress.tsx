@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NavigateBack from "@/components/NavigateBack";
 import CardCom from "@/components/CardCom";
@@ -23,5 +23,14 @@ const AmericanExpress = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  mainContent: {
+    flex: 1,
+    justifyContent: "space-between",
+    flexDirection: "column",
+    marginBottom: 20 , 
+  },
+});
 
 export default AmericanExpress;
