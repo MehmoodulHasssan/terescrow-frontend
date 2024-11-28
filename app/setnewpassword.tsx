@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { icons } from "@/constants";
 import { Image } from "expo-image";
 import {
@@ -15,14 +16,22 @@ import { validationSetNewPassword } from "@/utils/validation";
 import Input from "./customInput";
 import Button from "@/utils/Button";
 import NavigateBack from "@/components/NavigateBack";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router"; // Importing useRouter
+import SuccessModal from "./successmodal";
 
 const SetNewPassword = () => {
+  const [modalVisible, setModalVisible] = useState(false); // Added state for modal visibility
   const { dark } = useTheme();
-  const { goBack } = useNavigation();
+  const router = useRouter(); 
+  const {goBack} = useNavigation();
   const themeStyles = {
     background: dark ? COLORS.dark1 : COLORS.white,
     normalText: dark ? COLORS.white : COLORS.black,
+  };
+
+  const handleModalPress = () => {
+    setModalVisible(false);
+    router.push("/(tabs)/chat"); 
   };
 
   return (
@@ -41,7 +50,10 @@ const SetNewPassword = () => {
             />
           </TouchableOpacity>
           <Text
-            style={[{ fontSize: 23, fontWeight: "bold", marginVertical: 10 }, { color: themeStyles.normalText }]}
+            style={[
+              { fontSize: 23, fontWeight: "bold", marginVertical: 10 },
+              { color: themeStyles.normalText },
+            ]}
           >
             Set New Password
           </Text>
@@ -49,11 +61,14 @@ const SetNewPassword = () => {
             Fill in the details below to get started.
           </Text>
         </View>
-        <View style={{ flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Formik
             initialValues={{ password: "", confirmPassword: "" }}
             validationSchema={validationSetNewPassword}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => {
+              console.log(values);
+              setModalVisible(true); // Show modal after successful submission
+            }}
           >
             {({
               handleSubmit,
@@ -96,16 +111,26 @@ const SetNewPassword = () => {
                     id="password"
                   />
                 </View>
-                <View style={{ width: '100%' }}>
+                <View style={{ width: "100%" }}>
                   <Button
-                    disabled={ !(
-                      values.password &&
-                      values.confirmPassword &&
-                      !errors.password &&
-                      !errors.confirmPassword
-                    )}
-                    title="Complete"
-                    style={{ opacity: values.password && values.confirmPassword && !errors.password && !errors.confirmPassword ? 1 : 0.6 }}
+                    disabled={
+                      !(
+                        values.password &&
+                        values.confirmPassword &&
+                        !errors.password &&
+                        !errors.confirmPassword
+                      )
+                    }
+                    title="Complete" // Ensure this is a string
+                    style={{
+                      opacity:
+                        values.password &&
+                        values.confirmPassword &&
+                        !errors.password &&
+                        !errors.confirmPassword
+                          ? 1
+                          : 0.6,
+                    }}
                     onPress={handleSubmit as () => void}
                   />
                 </View>
@@ -113,6 +138,12 @@ const SetNewPassword = () => {
             )}
           </Formik>
         </View>
+        <SuccessModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          onPress={handleModalPress}
+          buttonTitle="Go to dashboard" // Ensure this is a string
+        />
       </ScrollView>
     </SafeAreaView>
   );

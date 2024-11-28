@@ -46,6 +46,8 @@ export default function RootLayout() {
         <Stack.Screen name="forgetpassword" options={{ headerShown: false }} />
         <Stack.Screen name="successmodal" options={{ headerShown: false }} />
         <Stack.Screen name="signin" options={{ headerShown: false }} />
+        <Stack.Screen name='editprofile' options={{ headerShown: false }} />
+        <Stack.Screen name="updatekyclevel" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
         <Stack.Screen name="sellgiftcard" options={{ headerShown: false }} />
         <Stack.Screen name="buygiftcard" options={{ headerShown: false }} />

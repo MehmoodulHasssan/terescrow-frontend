@@ -86,3 +86,43 @@ export const validationSetNewPassword = Yup.object().shape({
     .required("Confirm Password is required")
     .oneOf([Yup.ref("password")], "Passwords must match"),
 });
+
+// editProfile schema
+export const validationEditProfile = Yup.object().shape({
+  firstName: Yup.string()
+  .required('First name is required')
+  .min(5, 'First name must be at least 5 characters')
+  .max(25, 'First name can’t be longer than 25 characters'),
+
+  lastName: Yup.string()
+  .required('Last name is required')
+  .min(5, 'Last name must be at least 5 characters')
+  .max(25, 'Last name can’t be longer than 25 characters'),
+
+  email: Yup.string()
+  .required('Email is required')
+  .matches(
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    'Please enter a valid email address'
+  ),
+
+  country: Yup.string()
+  .required('Country is required')
+  .oneOf(
+    ['Nigeria', 'Ghana', 'Cameroon', 'South Africa', 'Kenya'],
+    'Invalid country'
+  ),
+
+  mobileNumber: Yup.string()
+  .matches(/^\d+$/, 'Phone number must be numeric')
+  .required('Phone number is required'),
+
+  gender: Yup.string()
+  .required('Gender is required')
+  .oneOf(["Male", "Female", "Other"], "Invalid gender"),
+
+  userName: Yup.string()
+  .required('Username is required')
+  .min(5, 'Username must be at least 5 characters')
+  .max(25, 'Username can’t be longer than 25 characters'),
+})

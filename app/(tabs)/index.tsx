@@ -2,8 +2,10 @@ import { Image, StyleSheet, Platform, View } from "react-native";
 import Header from "@/components/index/Header";
 import CardSwiper from "@/components/index/CardSwiper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import profile from "./profile";
 import QuickAction from "@/components/index/QuickAction";
 import RecentContainer from "@/components/index/RecentContainer";
+import Profile from "./profile";
 export default function HomeScreen() {
   return (
     <SafeAreaView style={{ flex: 2 }}>
