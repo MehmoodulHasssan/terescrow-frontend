@@ -5,7 +5,10 @@ import CardCom from "@/components/CardCom";
 import { images } from "@/constants";
 import InformationFields from "@/components/InformationFields";
 import CustomProceed from "@/components/CustomProceed";
+import { useTheme } from "@/contexts/themeContext";
+import { Colors } from "@/constants/Colors";
 const Amazon = () => {
+  const { dark } = useTheme();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigateBack text="Amazon" />

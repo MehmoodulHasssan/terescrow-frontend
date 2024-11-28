@@ -5,10 +5,18 @@ import CardCom from "@/components/CardCom";
 import { images } from "@/constants";
 import InformationFields from "@/components/InformationFields";
 import CustomProceed from "@/components/CustomProceed";
+import { useTheme } from "@/contexts/themeContext";
+import { Colors } from "@/constants/Colors";
 
 const VisaCard = () => {
+  const { dark } = useTheme()
   return (
-    <SafeAreaView>
+    <SafeAreaView style={[
+      { flex: 1 },
+      dark
+        ? { backgroundColor: Colors.dark.background }
+        : { backgroundColor: Colors.light.background },
+    ]}>
       <NavigateBack text="Visa Card" />
       <CardCom card={images.visaCard} />
       <View

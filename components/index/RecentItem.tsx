@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
 import { COLORS } from "@/constants";
+import { useTheme } from "@/contexts/themeContext";
 const RecentItem: React.FC<{
   icon: string;
   heading: string;
@@ -9,23 +10,64 @@ const RecentItem: React.FC<{
   price: string;
   productId: string;
 }> = (props) => {
+  const { dark } = useTheme();
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        dark
+          ? { backgroundColor: COLORS.transparentAccount }
+          : { backgroundColor: COLORS.grayscale100 },
+      ]}
+    >
       <View style={styles.iconContainer}>
         <Image source={props.icon} style={styles.icon} />
       </View>
       <View style={styles.textContainer}>
         <View style={styles.contentOne}>
-          <Text style={styles.heading}>{props.heading}</Text>
+          <Text
+            style={[
+              styles.heading,
+              dark ? { color: COLORS.white } : { color: COLORS.black },
+            ]}
+          >
+            {props.heading}
+          </Text>
           <View style={styles.details}>
-            <Text style={styles.detailPriceProduct}>{props.price}</Text>
-            <Text> - </Text>
-            <Text style={styles.detailPriceProduct}>{props.productId}</Text>
+            <Text
+              style={[
+                styles.detailPriceProduct,
+                dark ? { color: COLORS.white } : { color: COLORS.black },
+              ]}
+            >
+              {props.price}
+            </Text>
+            <Text
+              style={[dark ? { color: COLORS.white } : { color: COLORS.black }]}
+            >
+              {" "}
+              -{" "}
+            </Text>
+            <Text
+              style={[
+                styles.detailPriceProduct,
+                dark ? { color: COLORS.white } : { color: COLORS.black },
+              ]}
+            >
+              {props.productId}
+            </Text>
           </View>
         </View>
         <View style={styles.contentTwo}>
           <View>
-            <Text style={styles.text}>{props.text}</Text>
+            <Text
+              style={[
+                styles.text,
+                dark ? { color: COLORS.white } : { color: COLORS.black },
+              ]}
+            >
+              {props.text}
+            </Text>
           </View>
           <View
             style={{
@@ -34,8 +76,20 @@ const RecentItem: React.FC<{
               alignItems: "center",
             }}
           >
-            <Text style={styles.date}>{props.date}</Text>
-            <Text style={styles.circle}></Text>
+            <Text
+              style={[
+                styles.date,
+                dark ? { color: COLORS.white } : { color: COLORS.black },
+              ]}
+            >
+              {props.date}
+            </Text>
+            <Text
+              style={[
+                styles.circle,
+                dark ? { color: COLORS.white } : { color: COLORS.black },
+              ]}
+            ></Text>
           </View>
         </View>
       </View>

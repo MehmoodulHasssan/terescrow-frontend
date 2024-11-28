@@ -59,7 +59,7 @@ const RecentContainer = () => {
         )}
         keyExtractor={(item) => item.key}
         numColumns={1}
-        contentContainerStyle={{ paddingBottom: 40 }} 
+        contentContainerStyle={{ paddingBottom: 20 }} 
       />
     </View>
   );
@@ -69,7 +69,7 @@ export default RecentContainer;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
+    // flex: 1, 
   },
   mainHeading: {
     textAlign: "right",
