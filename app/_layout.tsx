@@ -48,6 +48,9 @@ export default function RootLayout() {
         <Stack.Screen name="signin" options={{ headerShown: false }} />
         <Stack.Screen name='editprofile' options={{ headerShown: false }} />
         <Stack.Screen name="updatekyclevel" options={{ headerShown: false }} />
+        <Stack.Screen name="bvnverification" options={{ headerShown: false }} />
+        <Stack.Screen name="profilesecurity" options={{ headerShown: false }} />
+        <Stack.Screen name="changepassword" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
         <Stack.Screen name="sellgiftcard" options={{ headerShown: false }} />
         <Stack.Screen name="buygiftcard" options={{ headerShown: false }} />
