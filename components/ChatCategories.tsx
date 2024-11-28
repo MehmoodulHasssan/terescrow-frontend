@@ -73,7 +73,7 @@ const ChatCategories = () => {
       </View>
 
       {/* Data */}
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, marginTop: 11  }}>
         <FlatList
           data={getFilteredData()}
           keyExtractor={(item) => item.id}

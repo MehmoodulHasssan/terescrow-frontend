@@ -2,8 +2,16 @@ import { Text, View, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import { COLORS, images } from "@/constants";
 import CustomCancelTrade from "./CustomCancelTrade";
+import { useRouter } from "expo-router";
 
 const ConnectingScreen = () => {
+  const router = useRouter();
+  const sendToChatHandler = () => {
+    setTimeout(() => {
+      router.push('/chatwithagent');
+    }, 2000);
+  }
+  sendToChatHandler();
   return (
     <View style={styles.container}>
       <Image

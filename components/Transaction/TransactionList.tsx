@@ -1,0 +1,45 @@
+import { Text, View, StyleSheet, FlatList } from "react-native";
+import { COLORS, icons } from "@/constants";
+import TransactionItem from "./TransactionItem";
+import { DUMMY_TRANS } from '../../utils/dummyTrans'
+const TransactionList = () => {
+  const data = DUMMY_TRANS;
+  return (
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.mainHeading}>Transaction History</Text>
+      </View>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <TransactionItem
+            icon={item.icon}
+            heading={item.heading}
+            date={item.date}
+            price={item.price}
+            productId={item.productId}
+            route={item.route}
+          />
+        )}
+        keyExtractor={(item) => item.key}
+        numColumns={1}
+        contentContainerStyle={{ paddingBottom: 40 }}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginHorizontal: 16,
+  },
+  mainHeading: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 16,
+    marginRight: 16,
+  },
+});
+
+export default TransactionList;

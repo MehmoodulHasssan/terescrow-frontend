@@ -42,17 +42,22 @@ export default function RootLayout() {
           name="(tabs)/index"
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="setnewpassword" options={{ headerShown: false }} />
         <Stack.Screen name="forgetpassword" options={{ headerShown: false }} />
         <Stack.Screen name="successmodal" options={{ headerShown: false }} />
         <Stack.Screen name="signin" options={{ headerShown: false }} />
+        <Stack.Screen name='editprofile' options={{ headerShown: false }} />
+        <Stack.Screen name="updatekyclevel" options={{ headerShown: false }} />
+        <Stack.Screen name="bvnverification" options={{ headerShown: false }} />
+        <Stack.Screen name="profilesecurity" options={{ headerShown: false }} />
+        <Stack.Screen name="changepassword" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
         <Stack.Screen name="sellgiftcard" options={{ headerShown: false }} />
         <Stack.Screen name="buygiftcard" options={{ headerShown: false }} />
         <Stack.Screen name="sellcrypto" options={{ headerShown: false }}  />
         <Stack.Screen name="buycrypto" options={{ headerShown: false }}  />
         <Stack.Screen name="amazon" options={{ headerShown: false }}  />
-        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="americanexpress" options={{ headerShown: false }}  />
         <Stack.Screen name="connectingagent" options={{ headerShown: false }}  />
         <Stack.Screen name="ebaycard" options={{ headerShown: false }}  />
@@ -71,6 +76,11 @@ export default function RootLayout() {
         <Stack.Screen name="bnb" options={{ headerShown: false }}  />
         <Stack.Screen name="toncoin" options={{ headerShown: false }}  />
         <Stack.Screen name="tron" options={{ headerShown: false }}  />
+        <Stack.Screen name="giftcardsold" options={{ headerShown: false }}  />
+        <Stack.Screen name="giftcardbought" options={{ headerShown: false }}  />
+        <Stack.Screen name="cryptosold" options={{ headerShown: false }}  />
+        <Stack.Screen name="cryptobought" options={{ headerShown: false }}  />
+        <Stack.Screen name="chatwithagent" options={{ headerShown: false }}  />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

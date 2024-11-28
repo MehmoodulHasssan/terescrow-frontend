@@ -34,10 +34,12 @@ const footLockerCard = require('../assets/images/foot-locker-card.png')
 const googlePlayCard = require('../assets/images/google-play-card.png')
 const visaCard = require('../assets/images/visa-card.png')
 const connectingAgentBg = require('../assets/images/connecting-agent-bg.png')
+const maskGroup = require('../assets/images/mask-group.png')
 
 
 
 const images = {
+  maskGroup,
   connectingAgentBg,
   amazonCard,
   americanExpressCard,

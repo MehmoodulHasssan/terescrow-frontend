@@ -32,7 +32,7 @@ const Signin = () => {
         {/* Header Section */}
         <View style={styles.header}>
           <TouchableOpacity>
-            <Image source={icons.arrowBack} style={styles.backIcon} />
+            <Image source={icons.arrowBack} style={[styles.backIcon, {tintColor: dark ? COLORS.white : COLORS.black}]} />
           </TouchableOpacity>
 
           <Text
@@ -52,14 +52,14 @@ const Signin = () => {
           ]}
         >
           Don't have an account?{" "}
-          <Text style={styles.createAccountText}>Create Account</Text>
+          <Text style={styles.createAccountText} onPress={() => push("/signup")}>Create Account</Text>
         </Text>
 
         <View style={styles.formContainer}>
           <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={validationSignInSchema}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={() => push('/(tabs)/chat')}
           >
             {({
               handleChange,
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: "bold",
-    marginVertical: 7,
+    marginTop: 15,
   },
   subtitle: {
     fontSize: 16,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   input: {
-    marginBottom: 10,
+    marginBottom: 8,
   },
   resetPasswordText: {
     color: COLORS.primary,
