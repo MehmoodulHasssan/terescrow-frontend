@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { COLORS } from "@/constants";
+import { useTheme } from "@/contexts/themeContext";
 
 const QuickBoxItem: React.FC<{
   icon: string;
@@ -8,14 +9,44 @@ const QuickBoxItem: React.FC<{
   text: string;
   onSend: () => void;
 }> = (props) => {
+  const { dark } = useTheme();
   return (
-    <Pressable style={styles.container} onPress={props.onSend}>
-      <View style={styles.iconContainer}>
+    <Pressable
+      style={[
+        styles.container,
+        dark
+          ? { backgroundColor: COLORS.transparentWhite2 }
+          : { backgroundColor: COLORS.grayscale100 },
+      ]}
+      onPress={props.onSend}
+    >
+      <View
+        style={[
+          styles.iconContainer,
+          dark
+            ? { backgroundColor: COLORS.transparentWhite2 }
+            : { backgroundColor: COLORS.grayscale100 },
+        ]}
+      >
         <Image source={props.icon} style={styles.icon} />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.heading}>{props.heading}</Text>
-        <Text style={styles.text}>{props.text}</Text>
+        <Text
+          style={[
+            styles.heading,
+            dark ? { color: COLORS.white } : { color: COLORS.black },
+          ]}
+        >
+          {props.heading}
+        </Text>
+        <Text
+          style={[
+            styles.text,
+            dark ? { color: COLORS.white } : { color: COLORS.black },
+          ]}
+        >
+          {props.text}
+        </Text>
       </View>
     </Pressable>
   );
