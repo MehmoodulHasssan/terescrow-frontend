@@ -42,6 +42,7 @@ export default function RootLayout() {
           name="(tabs)/index"
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="setnewpassword" options={{ headerShown: false }} />
         <Stack.Screen name="forgetpassword" options={{ headerShown: false }} />
         <Stack.Screen name="successmodal" options={{ headerShown: false }} />
@@ -57,7 +58,6 @@ export default function RootLayout() {
         <Stack.Screen name="sellcrypto" options={{ headerShown: false }}  />
         <Stack.Screen name="buycrypto" options={{ headerShown: false }}  />
         <Stack.Screen name="amazon" options={{ headerShown: false }}  />
-        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="americanexpress" options={{ headerShown: false }}  />
         <Stack.Screen name="connectingagent" options={{ headerShown: false }}  />
         <Stack.Screen name="ebaycard" options={{ headerShown: false }}  />
@@ -80,6 +80,7 @@ export default function RootLayout() {
         <Stack.Screen name="giftcardbought" options={{ headerShown: false }}  />
         <Stack.Screen name="cryptosold" options={{ headerShown: false }}  />
         <Stack.Screen name="cryptobought" options={{ headerShown: false }}  />
+        <Stack.Screen name="chatwithagent" options={{ headerShown: false }}  />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
