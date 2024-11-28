@@ -38,16 +38,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
 }) => {
   const options =
     type === "country"
-      ? [
-          "USA",
-          "Canada",
-          "UK",
-          "Nigeria",
-          "Ghana",
-          "Kenya",
-          "South Africa",
-          "Cameroon",
-        ]
+      ? ["Nigeria", "Ghana", "Cameroon", "South Africa", "Kenya"]
       : ["Male", "Female", "Other"];
 
   const [modalHeight] = useState(new Animated.Value(0)); // Initial modal height set to 0
@@ -77,7 +68,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
     if (isVisible) {
       // Reset translateY to ensure proper animation
       translateY.setValue(screenHeight);
-  
+
       Animated.parallel([
         Animated.timing(modalHeight, {
           toValue: screenHeight / 2,
@@ -105,7 +96,6 @@ const CustomModal: React.FC<CustomModalProps> = ({
       ]).start();
     }
   }, [isVisible]);
-  
 
   // Render each option
   const renderOption = ({ item }: { item: string }) => (
@@ -131,51 +121,51 @@ const CustomModal: React.FC<CustomModalProps> = ({
 
   return (
     <Modal visible={isVisible} animationType="fade" transparent>
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss(); // Dismiss the keyboard if it's open
-        onClose(); // Close the modal when the backdrop is tapped
-      }}
-    >
-      <View style={styles.modalOverlay}>
-        <Animated.View
-          {...panResponder.panHandlers}
-          style={[
-            styles.modalContainer,
-            {
-              height: modalHeight, // Animate height
-              transform: [{ translateY }], // Animate position
-              backgroundColor: theme === "dark" ? "#333" : "#fff",
-            },
-          ]}
-        >
-          <View
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss(); // Dismiss the keyboard if it's open
+          onClose(); // Close the modal when the backdrop is tapped
+        }}
+      >
+        <View style={styles.modalOverlay}>
+          <Animated.View
+            {...panResponder.panHandlers}
             style={[
-              styles.dragHandle,
-              { backgroundColor: theme === "dark" ? "#555" : "#E0E0E0" },
-            ]}
-          />
-  
-          {/* Title */}
-          <Text
-            style={[
-              styles.title,
-              { color: theme === "dark" ? "#fff" : "#000" },
+              styles.modalContainer,
+              {
+                height: modalHeight, // Animate height
+                transform: [{ translateY }], // Animate position
+                backgroundColor: theme === "dark" ? "#333" : "#fff",
+              },
             ]}
           >
-            {type.charAt(0).toUpperCase() + type.slice(1)}
-          </Text>
-  
-          {/* Options List */}
-          <FlatList
-            data={options}
-            renderItem={renderOption}
-            keyExtractor={(item) => item}
-          />
-        </Animated.View>
-      </View>
-    </TouchableWithoutFeedback>
-  </Modal>
+            <View
+              style={[
+                styles.dragHandle,
+                { backgroundColor: theme === "dark" ? "#555" : "#E0E0E0" },
+              ]}
+            />
+
+            {/* Title */}
+            <Text
+              style={[
+                styles.title,
+                { color: theme === "dark" ? "#fff" : "#000" },
+              ]}
+            >
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </Text>
+
+            {/* Options List */}
+            <FlatList
+              data={options}
+              renderItem={renderOption}
+              keyExtractor={(item) => item}
+            />
+          </Animated.View>
+        </View>
+      </TouchableWithoutFeedback>
+    </Modal>
   );
 };
 

@@ -66,6 +66,7 @@ const SignUp = () => {
           >
             Already have an account?{" "}
             <Text
+              onPress={() => push("/signin")}
               style={{
                 fontSize: SIZES.h4,
                 fontWeight: "bold",
@@ -92,7 +93,7 @@ const SignUp = () => {
           validationSchema={validationSignUpSchema}
           onSubmit={(values) => {
             console.log(values);
-            push("/otpverification");
+            push({ pathname: '/otpverification', params: { context: 'signup' }});
           }}
         >
           {({
@@ -159,10 +160,11 @@ const SignUp = () => {
                       flexDirection: "row",
                       alignItems: "center",
                       justifyContent: "space-between",
+                      marginTop: 7,
+                      marginBottom: 16,
                       borderRadius: SIZES.padding,
                     }}
                   >
-                    {/* Country Text */}
                     <Text
                       style={{
                         color: values.country
@@ -178,7 +180,6 @@ const SignUp = () => {
                       {values.country || "Select Country"}
                     </Text>
 
-                    {/* Arrow Icon */}
                     <Image
                       source={icons.arrowRight}
                       style={{

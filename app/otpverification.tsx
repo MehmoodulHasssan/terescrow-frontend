@@ -12,14 +12,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "../utils/Button";
 import { COLORS, icons } from "@/constants";
 import { useTheme } from "@/contexts/themeContext";
-import { useNavigation, useRouter } from "expo-router";
+import { useRouter, useNavigation } from "expo-router";
+import { useSearchParams } from "expo-router/build/hooks";
 import { Image } from "expo-image";
 import FONTS from "@/constants/fonts";
 import Input from "./customInput";
-import { useSearchParams } from "expo-router/build/hooks";
-import { ThemedView } from "@/components/ThemedView";
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { opacity } from "react-native-reanimated/lib/typescript/Colors";
 
 const OTPVerification = () => {
   const { goBack } = useNavigation();
@@ -28,6 +25,9 @@ const OTPVerification = () => {
   const [timerOut, setTimerOut] = useState(false);
   const { colors, dark } = useTheme();
   const {push} = useRouter()
+
+  const searchParams = useSearchParams();
+  const context = searchParams.get("context");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,8 +51,13 @@ const OTPVerification = () => {
   const handleVerifyOTP = () => {
     if (otp.length === 4) {
       console.log(`Verifying OTP: ${otp}`);
+      if(context === 'signup'){
+        push({ pathname: '/setpinscreen', params: { title: 'Set your Pin' }})
+      }
+      else if(context === 'signin'){
+        push('/setnewpassword')
+      }
     }
-    push({ pathname: '/setpinscreen', params: { title: 'Set your Pin' }})
   };
 
   const themeStyle = {

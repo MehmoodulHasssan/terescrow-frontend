@@ -16,9 +16,11 @@ import { useTheme } from "@/contexts/themeContext";
 import { validationforgetPasswordSchema } from "@/utils/validation";
 import Input from "./customInput";
 import Button from "@/utils/Button";
+import { useNavigation } from "expo-router";
 
 const ForgetPassword = () => {
   const { dark } = useTheme();
+  const {goBack} = useNavigation();
   const { push } = useRouter();
 
   const themeStyles = {
@@ -30,7 +32,7 @@ const ForgetPassword = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: themeStyles.background }}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={goBack}>
             <Image
               source={icons.arrowBack}
               style={{
@@ -59,14 +61,7 @@ const ForgetPassword = () => {
             validationSchema={validationforgetPasswordSchema}
             onSubmit={(values) => console.log(values)}
           >
-            {({
-              handleChange,
-              handleBlur,
-              values,
-              errors,
-              touched,
-              
-            }) => (
+            {({ handleChange, handleBlur, values, errors, touched }) => (
               <View style={[styles.secondryCont]}>
                 <View>
                   <Input
@@ -89,8 +84,8 @@ const ForgetPassword = () => {
                       opacity: !(values.email && !errors.email) ? 0.6 : 1,
                     }}
                     title="Continue"
-                    onPress={() => push('/setnewpassword')}
-                    disabled={!errors.email}
+                    onPress={() => push({ pathname: "/otpverification", params: { context: "signin" }})}
+                    disabled={!values.email || Boolean(errors.email)}
                   />
                 </View>
               </View>
