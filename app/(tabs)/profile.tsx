@@ -69,7 +69,7 @@ const Profile = () => {
           <ProfileListItem
             text="Security"
             icon={icons.security}
-            onPress={() => {}}
+            onPress={() => {router.push('/profilesecurity')}}
           />
           <ProfileListItem
             text="Privacy Policy"

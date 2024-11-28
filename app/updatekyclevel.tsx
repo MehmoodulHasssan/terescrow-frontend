@@ -127,11 +127,7 @@ const UpdateKycLevel = () => {
                         tintColor: themeStyles.normalText,
                       }}
                     />
-                    <Text
-                      style={[
-                        { color: themeStyles.normalText },
-                      ]}
-                    >
+                    <Text style={[{ color: themeStyles.normalText }]}>
                       {item.title}
                     </Text>
                   </View>
@@ -152,13 +148,10 @@ const UpdateKycLevel = () => {
           </View>
         </ScrollView>
 
-        <View style={styles.buttonContainer} >
-          <Button title="Upgrade to Tier 2" onPress={openModal} / >
+        <DraggableModal isVisible={isModalVisible} onClose={closeModal} />
+        <View style={styles.buttonContainer}>
+          <Button title="Upgrade to Tier 2" onPress={openModal} />
         </View>
-        <DraggableModal
-        isVisible={isModalVisible}
-        onClose={closeModal} 
-      />
       </View>
     </SafeAreaView>
   );
