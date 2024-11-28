@@ -73,6 +73,10 @@ export default function RootLayout() {
         <Stack.Screen name="bnb" options={{ headerShown: false }}  />
         <Stack.Screen name="toncoin" options={{ headerShown: false }}  />
         <Stack.Screen name="tron" options={{ headerShown: false }}  />
+        <Stack.Screen name="giftcardsold" options={{ headerShown: false }}  />
+        <Stack.Screen name="giftcardbought" options={{ headerShown: false }}  />
+        <Stack.Screen name="cryptosold" options={{ headerShown: false }}  />
+        <Stack.Screen name="cryptobought" options={{ headerShown: false }}  />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
