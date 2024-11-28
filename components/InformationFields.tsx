@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import CustomSelectField from "./CustomSelectField";
 
 const InformationFields = () => {
   const [counter, setCounter] = useState(0);
@@ -43,6 +44,9 @@ const InformationFields = () => {
         placeholder="Enter amount in USD"
         placeholderTextColor="#888"
       />
+      <View style={{ flex: 1, marginTop: 24, }}>
+        <CustomSelectField title="Category" />
+      </View>
     </View>
   );
 };
@@ -51,6 +55,7 @@ export default InformationFields;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: 24,
     marginHorizontal: 16,
   },
