@@ -47,6 +47,7 @@ const RecentContainer = () => {
       </View>
       <FlatList
         data={data}
+        scrollEnabled={false}
         renderItem={({ item }) => (
           <RecentItem
             icon={item.icon}

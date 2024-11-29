@@ -60,14 +60,14 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: "#70D4A3", // Default color for inactive dots
+    backgroundColor: "#70D4A3",
     marginHorizontal: 5,
   },
   activeDot: {
     width: 10,
     height: 10,
     borderRadius: 6,
-    backgroundColor: COLORS.green, // Color for the active dot
+    backgroundColor: COLORS.green,
     marginHorizontal: 5,
   },
 });

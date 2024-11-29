@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { COLORS } from "@/constants";
 import { Route, useRouter } from "expo-router";
+import { useTheme } from "@/contexts/themeContext";
 const TransactionItem: React.FC<{
   icon: string;
   heading: string;
@@ -10,10 +11,11 @@ const TransactionItem: React.FC<{
   productId: string;
   route: string;
 }> = (props) => {
-    const router = useRouter();
-    const transPressHandler = () => {
-        router.push(props.route as Route)
-    }
+  const { dark } = useTheme();
+  const router = useRouter();
+  const transPressHandler = () => {
+    router.push(props.route as Route);
+  };
   return (
     <Pressable onPress={transPressHandler} style={styles.container}>
       <View style={styles.iconContainer}>
@@ -21,9 +23,23 @@ const TransactionItem: React.FC<{
       </View>
       <View style={styles.textContainer}>
         <View style={styles.contemt}>
-          <Text style={styles.heading}>{props.heading}</Text>
+          <Text
+            style={[
+              styles.heading,
+              dark ? { color: COLORS.white } : { color: COLORS.black },
+            ]}
+          >
+            {props.heading}
+          </Text>
           <View style={styles.details}>
-            <Text style={styles.detailPrice}>{props.price}</Text>
+            <Text
+              style={[
+                styles.detailPrice,
+                dark ? { color: COLORS.white } : { color: COLORS.black },
+              ]}
+            >
+              {props.price}
+            </Text>
           </View>
         </View>
         <View style={styles.contemt}>
@@ -55,7 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 1,
-    paddingBottom: 16 ,
+    paddingBottom: 16,
     borderColor: COLORS.greyscale300,
   },
   iconContainer: {

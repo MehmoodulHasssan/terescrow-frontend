@@ -15,7 +15,7 @@ const QuickBoxItem: React.FC<{
       style={[
         styles.container,
         dark
-          ? { backgroundColor: COLORS.transparentWhite2 }
+          ? { backgroundColor: COLORS.dark3 }
           : { backgroundColor: COLORS.grayscale100 },
       ]}
       onPress={props.onSend}
@@ -24,8 +24,8 @@ const QuickBoxItem: React.FC<{
         style={[
           styles.iconContainer,
           dark
-            ? { backgroundColor: COLORS.transparentWhite2 }
-            : { backgroundColor: COLORS.grayscale100 },
+            ? { backgroundColor: COLORS.white }
+            : { backgroundColor: COLORS.transparentAccount },
         ]}
       >
         <Image source={props.icon} style={styles.icon} />
@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#E9F2EE",
   },
   icon: {
     width: 20,

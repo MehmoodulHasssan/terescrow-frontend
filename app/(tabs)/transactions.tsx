@@ -9,8 +9,22 @@ import { COLORS } from "@/constants";
 const transactions = () => {
   const { dark } = useTheme();
   return (
-    <SafeAreaView style={[{ flex: 1 }, dark ? {backgroundColor: COLORS.black} : { backgroundColor: COLORS.white } ]}>
-      <Text style={styles.pageTitle}>Transaction</Text>
+    <SafeAreaView
+      style={[
+        { flex: 1 },
+        dark
+          ? { backgroundColor: COLORS.black }
+          : { backgroundColor: COLORS.white },
+      ]}
+    >
+      <Text
+        style={[
+          styles.pageTitle,
+          dark ? { color: COLORS.white } : { color: COLORS.black },
+        ]}
+      >
+        Transaction
+      </Text>
       <View style={{ flex: 1 }}>
         <DoughnutChart />
       </View>

@@ -1,5 +1,5 @@
 import { images } from "@/constants";
-import { Text, View, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import CardItem from "./CardItem";
 import { Route, useRouter } from "expo-router";
 

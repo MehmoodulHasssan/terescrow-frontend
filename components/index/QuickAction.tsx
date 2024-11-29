@@ -37,6 +37,20 @@ const QuickAction = () => {
       text: "Purchase popular crypto quickly and securely",
       route: "/buycrypto",
     },
+    {
+      icon: icons.bitCoin,
+      key: "5",
+      heading: "Buy crypto",
+      text: "Purchase popular crypto quickly and securely",
+      route: "/buycrypto",
+    },
+    {
+      icon: icons.bitCoin,
+      key: "6",
+      heading: "Buy crypto",
+      text: "Purchase popular crypto quickly and securely",
+      route: "/buycrypto",
+    },
   ];
   return (
     <View style={styles.container}>
@@ -52,6 +66,7 @@ const QuickAction = () => {
       </View>
       <FlatList
         data={data}
+        scrollEnabled={false}
         renderItem={({ item }) => (
           <QuickBoxItem
             icon={item.icon}

@@ -3,19 +3,29 @@ import { Image } from "expo-image";
 import { COLORS, icons } from "@/constants";
 import { Pressable } from "react-native";
 import { useRouter } from "expo-router";
+import { useTheme } from "@/contexts/themeContext";
+import { Colors } from "@/constants/Colors";
 
 const ChatPfpNav: React.FC<{ image: string; name: string; status: string }> = (
   props
 ) => {
+  const { dark } = useTheme();
   const router = useRouter();
 
   const backPressHandler = () => {
     console.log("Navigating back...");
-    router.dismissTo('/(tabs)');
+    router.dismissTo("/(tabs)");
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        dark
+          ? { backgroundColor: COLORS.black }
+          : { backgroundColor: COLORS.white },
+      ]}
+    >
       <Pressable
         onPress={backPressHandler}
         style={styles.pressableArea}
@@ -23,7 +33,15 @@ const ChatPfpNav: React.FC<{ image: string; name: string; status: string }> = (
         accessibilityLabel="Go back"
         accessibilityRole="button"
       >
-        <Image source={icons.arrowBack} style={styles.backIcon} />
+        <Image
+          source={icons.arrowBack}
+          style={[
+            styles.backIcon,
+            dark
+              ? { tintColor: Colors.dark.tint }
+              : { tintColor: COLORS.black },
+          ]}
+        />
       </Pressable>
 
       <View style={styles.mainContentContainer}>
@@ -32,7 +50,16 @@ const ChatPfpNav: React.FC<{ image: string; name: string; status: string }> = (
         </View>
         <View style={styles.mainTextContainer}>
           <View>
-            <Text style={styles.mainHeading}>{props.name}</Text>
+            <Text
+              style={[
+                styles.mainHeading,
+                dark
+                  ? { color: Colors.dark.text }
+                  : { color: Colors.light.text },
+              ]}
+            >
+              {props.name}
+            </Text>
           </View>
           <View>
             <Text style={styles.agentStatus}>{props.status}</Text>

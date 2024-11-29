@@ -9,7 +9,7 @@ export default class TestChart extends Component {
     const sliceColor = ["#0EF302", "#048096", "#191473", "#CA3900"];
 
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <View style={styles.container}>
           <View style={styles.chartContainer}>
             <PieChart
@@ -49,7 +49,7 @@ export default class TestChart extends Component {
             </View>
           </View>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }

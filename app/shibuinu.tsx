@@ -5,9 +5,18 @@ import CryptoCardCom from "@/components/CryptoCardCom";
 import { icons } from "@/constants";
 import InformationFields from "@/components/InformationFields";
 import CustomProceed from "@/components/CustomProceed";
+import { COLORS } from "@/constants";
+import { useTheme } from "@/contexts/themeContext";
 const ShibuInu = () => {
+  const { dark } = useTheme();
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={[
+        dark
+          ? { backgroundColor: COLORS.black }
+          : { backgroundColor: COLORS.white },
+      ]}
+    >
       <NavigateBack text="SHIBU INU" />
       <CryptoCardCom card={icons.shibaInu} />
       <View

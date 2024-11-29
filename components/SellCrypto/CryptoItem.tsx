@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { COLORS } from "@/constants";
+import { useTheme } from "@/contexts/themeContext";
 
 const CryptoItem: React.FC<{
   icon: string;
@@ -8,14 +9,37 @@ const CryptoItem: React.FC<{
   text: string;
   onSend: () => void;
 }> = (props) => {
+  const { dark } = useTheme();
   return (
-    <Pressable style={styles.container} onPress={props.onSend}>
+    <Pressable
+      style={[
+        styles.container,
+        dark
+          ? { backgroundColor: COLORS.dark3 }
+          : { backgroundColor: COLORS.grayscale100 },
+      ]}
+      onPress={props.onSend}
+    >
       <View style={styles.iconContainer}>
         <Image source={props.icon} style={styles.icon} contentFit="contain" />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.heading}>{props.heading}</Text>
-        <Text style={styles.text}>{props.text}</Text>
+        <Text
+          style={[
+            styles.heading,
+            dark ? { color: COLORS.white } : { color: COLORS.black },
+          ]}
+        >
+          {props.heading}
+        </Text>
+        <Text
+          style={[
+            styles.text,
+            dark ? { color: COLORS.white } : { color: COLORS.black },
+          ]}
+        >
+          {props.text}
+        </Text>
       </View>
     </Pressable>
   );
