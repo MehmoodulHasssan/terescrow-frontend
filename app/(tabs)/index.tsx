@@ -7,6 +7,12 @@ import RecentContainer from "@/components/index/RecentContainer";
 import { useTheme } from "@/contexts/themeContext";
 import { COLORS } from "@/constants";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
+<<<<<<< HEAD
+=======
+import Profile from "./profile";
+import TerceScrow from "../tercescrow";
+import SplashSteam from "../splashsteam";
+>>>>>>> 024119fce275f5b4200b51a9338a45e48699fd38
 export default function HomeScreen() {
   const { dark } = useTheme();
   console.log(dark);
@@ -22,8 +28,12 @@ export default function HomeScreen() {
       <View>
         <Header />
       </View>
+<<<<<<< HEAD
       <ScrollView style={{ flex: 1 }}>
         {/* Responsive CardSwiper */}
+=======
+      <View style={{ flex: 10 }}>
+>>>>>>> 024119fce275f5b4200b51a9338a45e48699fd38
         <View style={{ width: "100%", height: screenHeight * 0.25 }}>
           <CardSwiper />
         </View>

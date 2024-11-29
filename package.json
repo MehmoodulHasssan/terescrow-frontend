@@ -28,6 +28,7 @@
     "expo-font": "~13.0.1",
     "expo-haptics": "~14.0.0",
     "expo-image": "^2.0.1",
+    "expo-image-picker": "~16.0.3",
     "expo-linking": "~7.0.2",
     "expo-router": "~4.0.6",
     "expo-splash-screen": "~0.29.11",
@@ -38,6 +39,7 @@
     "formik": "^2.4.6",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-hot-toast": "^2.4.1",
     "react-native": "0.76.2",
     "react-native-chart-kit": "^6.12.0",
     "react-native-checkbox": "^2.0.0",
@@ -53,8 +55,8 @@
     "react-native-toast-message": "^2.2.1",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.4",
-    "yup": "^1.4.0",
-    "expo-image-picker": "~16.0.3"
+    "react-toastify": "^10.0.6",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

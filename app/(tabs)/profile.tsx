@@ -27,8 +27,29 @@ const Profile = () => {
             paddingHorizontal: 6,
           }}
         >
-          <Header />
-          {/* {icons.security} */}
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingHorizontal: 10,
+              paddingVertical: 18,
+            }}
+          >
+            <Text
+              style={{
+                color: dark ? COLORS.black : COLORS.white,
+                fontWeight: "bold",
+                fontSize: 20,
+              }}
+            >
+              Profile
+            </Text>
+            <Image
+              source={icons.notification}
+              style={{ width: 30, height: 30, tintColor: dark ? COLORS.dark1 : COLORS.white }}
+            />
+          </View>
           <View style={{ paddingHorizontal: 10 }}>
             <Image
               source={images.coverImage}
@@ -64,12 +85,16 @@ const Profile = () => {
           <ProfileListItem
             text="KYC Level"
             icon={icons.bag}
-            onPress={() => {router.push('/updatekyclevel')}}
+            onPress={() => {
+              router.push("/updatekyclevel");
+            }}
           />
           <ProfileListItem
             text="Security"
             icon={icons.security}
-            onPress={() => {router.push('/profilesecurity')}}
+            onPress={() => {
+              router.push("/profilesecurity");
+            }}
           />
           <ProfileListItem
             text="Privacy Policy"

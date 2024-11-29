@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, ScrollView, Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { useRouter } from "expo-router";
 import { useSearchParams } from "expo-router/build/hooks";
 import Toast from "react-native-toast-message";
 import { useTheme } from "@/contexts/themeContext";
-import { validationPinChange } from "@/utils/validation"; 
+import { validationPinChange } from "@/utils/validation";
 import FONTS from "@/constants/fonts";
 import { COLORS } from "@/constants";
+import { toast } from "react-toastify";
+import { Formik } from "formik";
 import SuccessModal from "./successmodal";
 
 const SetPinScreen: React.FC = () => {
@@ -18,7 +27,6 @@ const SetPinScreen: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const { dark } = useTheme();
 
-  // Handle key press for the pin
   const handlePress = (digit: string) => {
     if (pin.length < 4) {
       setPin([...pin, digit]);
@@ -30,54 +38,78 @@ const SetPinScreen: React.FC = () => {
     setPin(pin.slice(0, -1));
   };
 
-  // Toast configuration for error
-  const toastConfig = (message: string) => {
-    Toast.show({
-      type: "error",
-      text1: "Error",
-      text2: message,
-      position: "top",
-      visibilityTime: 3000,
-      autoHide: true,
-      topOffset: 50,
-    });
-  };
-
-  // Validate PIN when user enters 4 digits
   const validatePin = () => {
     const pinValue = pin.join("");
-  
-    // Check for match when in "Confirm your Pin" state
-    if (title === "Confirm your Pin" && pinValue !== pin.join("")) {
-      toastConfig("Pins do not match! Please try again.");
-      console.log('Pins do not match');
-      setPin([]); // Reset the pin input to allow user to try again
-      return; 
+
+    if (title === "Confirm your Pin") {
+      const enteredPin = searchParams.get("enteredPin");
+
+      if (pinValue !== enteredPin) {
+        toast.error("Pins should match!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        console.log("Pins do not match!");
+        setPin([]);
+        return;
+      } else {
+        console.log("Pins match successfully!");
+      }
+
+      // Navigate or perform actions for successful PIN confirmation
+      if (context === "signup") {
+        push({
+          pathname: "/setpinscreen",
+          params: { title: "Pin confirmed", context: "signup" },
+        });
+      }
+
+      if (context === "transactionPin") {
+        push({
+          pathname: "/setpinscreen",
+          params: { title: "Pin confirmed", context: "transactionPin" },
+        });
+        setModalVisible(false);
+        setPin([]);
+      }
+      return;
     }
-  
-    // Validation for PIN confirmation
+
     validationPinChange
       .validate({ setYourPin: pinValue, confirmYourPin: pinValue })
       .then(() => {
         if (title === "Set your Pin" && context === "signup") {
           push({
             pathname: "/setpinscreen",
-            params: { title: "Confirm your Pin" },
+            params: { title: "Confirm your Pin", enteredPin: pinValue },
           });
           setPin([]);
         }
+
         if (title === "Set your Pin" && context === "transactionPin") {
           push({
             pathname: "/setpinscreen",
-            params: { title: "Confirm your Pin" },
+            params: { title: "Confirm your Pin", enteredPin: pinValue },
           });
           setModalVisible(false);
           setPin([]);
         }
       })
       .catch((err: { message: string }) => {
-        toastConfig(err.message);
-        setPin([]); 
+        toast.error("Pins should match!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          bodyStyle: { fontSize: 16, zIndex: 9999, position: "absolute", top: 0, backgroundColor: "red" },
+          pauseOnHover: true,
+          draggable: true,
+        });
+        setPin([]);
       });
   };
 
@@ -85,7 +117,12 @@ const SetPinScreen: React.FC = () => {
     if (pin.length === 4) {
       validatePin();
     }
-    if (pin.length >= 4 && title === "Confirm your Pin" && context === "signup") {
+
+    if (
+      pin.length >= 4 &&
+      title === "Confirm your Pin" &&
+      context === "signup"
+    ) {
       setModalVisible(true);
     }
   }, [pin, title, context, push]);
@@ -109,44 +146,115 @@ const SetPinScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: themeStyles.background }]}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: themeStyles.background }]}
+    >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={[styles.iconContainer, { backgroundColor: themeStyles.pinDot }]}>
+        <View
+          style={[
+            styles.iconContainer,
+            { backgroundColor: themeStyles.pinDot },
+          ]}
+        >
           <Text style={[styles.pinText, { color: themeStyles.textPrimary }]}>
             {pin.length < 4 ? "***" : pin.join("")}
           </Text>
         </View>
-        <Text style={[styles.title, { color: themeStyles.buttonText, fontWeight: "bold" }]}>
+        <Text
+          style={[
+            styles.title,
+            { color: themeStyles.buttonText, fontWeight: "bold" },
+          ]}
+        >
           {title}
         </Text>
         <Text style={[styles.subtitle, { color: themeStyles.textSecondary }]}>
-          Set a 4-digit PIN to authorize your transactions and also to log in to your account.
+          Set a 4-digit PIN to authorize your transactions and also to log in to
+          your account.
         </Text>
 
-        <View style={[styles.pinInputContainer, { backgroundColor: themeStyles.pinInputCont }]}>
+        <View
+          style={[
+            styles.pinInputContainer,
+            { backgroundColor: themeStyles.pinInputCont },
+          ]}
+        >
           {Array.from({ length: 4 }).map((_, index) => (
             <View
               key={index}
-              style={[styles.pinDot, { backgroundColor: pin.length > index ? themeStyles.pinDotFilled : themeStyles.passwordPins }]}
+              style={[
+                styles.pinDot,
+                {
+                  backgroundColor:
+                    pin.length > index
+                      ? themeStyles.pinDotFilled
+                      : themeStyles.passwordPins,
+                },
+              ]}
             />
           ))}
         </View>
 
         <View style={styles.numberPad}>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((digit) => (
-            <TouchableOpacity key={digit} style={[styles.numberButton, { backgroundColor: themeStyles.buttonBackground }]} onPress={() => handlePress(digit.toString())}>
-              <Text style={[styles.numberButtonText, { color: themeStyles.buttonText }]}>{digit}</Text>
+            <TouchableOpacity
+              key={digit}
+              style={[
+                styles.numberButton,
+                { backgroundColor: themeStyles.buttonBackground },
+              ]}
+              onPress={() => handlePress(digit.toString())}
+            >
+              <Text
+                style={[
+                  styles.numberButtonText,
+                  { color: themeStyles.buttonText },
+                ]}
+              >
+                {digit}
+              </Text>
             </TouchableOpacity>
           ))}
           <View style={styles.emptyButton} />
-          <TouchableOpacity style={[styles.numberButton, { backgroundColor: themeStyles.buttonBackground }]} onPress={() => handlePress("0")}>
-            <Text style={[styles.numberButtonText, { color: themeStyles.buttonText }]}>0</Text>
+          <TouchableOpacity
+            style={[
+              styles.numberButton,
+              { backgroundColor: themeStyles.buttonBackground },
+            ]}
+            onPress={() => handlePress("0")}
+          >
+            <Text
+              style={[
+                styles.numberButtonText,
+                { color: themeStyles.buttonText },
+              ]}
+            >
+              0
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.numberButton, { backgroundColor: themeStyles.buttonBackground }]} onPress={handleBackspace}>
-            <Text style={[styles.numberButtonText, { color: themeStyles.buttonText }]}>←</Text>
+          <TouchableOpacity
+            style={[
+              styles.numberButton,
+              { backgroundColor: themeStyles.buttonBackground },
+            ]}
+            onPress={handleBackspace}
+          >
+            <Text
+              style={[
+                styles.numberButtonText,
+                { color: themeStyles.buttonText },
+              ]}
+            >
+              ←
+            </Text>
           </TouchableOpacity>
         </View>
-        <SuccessModal modalVisible={modalVisible} setModalVisible={setModalVisible} onPress={handleModalPress} buttonTitle="Go to dashboard" />
+        <SuccessModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          onPress={handleModalPress}
+          buttonTitle="Go to dashboard"
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -155,7 +263,7 @@ const SetPinScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 10,
+    paddingTop: 30,
   },
   scrollContainer: {
     flexGrow: 1,
@@ -169,7 +277,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 5,
   },
   pinText: {
     fontSize: 30,
@@ -212,17 +320,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 10,
-    marginHorizontal: 15,
-  },
-  emptyButton: {
-    width: 80,
-    height: 80,
-    margin: 15,
+    marginHorizontal: 10,
   },
   numberButtonText: {
     fontSize: 24,
     fontWeight: FONTS.Bold,
   },
+  emptyButton: {
+    width: 70,
+    height: 70,
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
 });
 
 export default SetPinScreen;
+function toastConfig(message: string) {
+  throw new Error("Function not implemented.");
+}

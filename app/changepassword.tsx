@@ -20,7 +20,7 @@ import { useState } from "react";
 const ChangePassword = () => {
   const { dark } = useTheme();
   const { goBack } = useNavigation();
-  const [isSubmitted, setIsSubmitted] = useState(false); 
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const themeStyles = {
     backgroundCont: dark ? COLORS.dark1 : COLORS.white,
@@ -39,7 +39,7 @@ const ChangePassword = () => {
     });
 
     setTimeout(() => {
-      router.canGoBack() ? router.back() : router.push('/profilesecurity');
+      router.canGoBack() ? router.back() : router.push("/profilesecurity");
     }, 3000);
   };
 
@@ -63,7 +63,10 @@ const ChangePassword = () => {
             />
           </TouchableOpacity>
           <Text
-            style={[{ fontWeight: "bold", fontSize: 22, textAlign: "center" }, { color: themeStyles.primaryText }]}
+            style={[
+              { fontWeight: "bold", fontSize: 22, textAlign: "center" },
+              { color: themeStyles.primaryText },
+            ]}
           >
             Change Password
           </Text>
@@ -107,7 +110,13 @@ const ChangePassword = () => {
                     id="password"
                     keyboardType="default"
                   />
-                  <Text style={[{ marginBottom: 10, marginTop: -10 }, { color: themeStyles.primaryText }]}>
+                  <Text
+                    style={[
+                      { marginBottom: 10, marginTop: -10 },
+                      { color: themeStyles.primaryText },
+                    ]}
+                    onPress={() => router.push("/forgetpassword")}
+                  >
                     Forget Password
                     <Text style={{ color: COLORS.primary }}> Reset here</Text>
                   </Text>
