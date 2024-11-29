@@ -43,12 +43,16 @@ export default function RootLayout() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="tercescrow" options={{ headerShown: false }} />
+        <Stack.Screen name='splashsteam' options={{ headerShown: false }} />
+        <Stack.Screen name="splashcrypto" options={{ headerShown: false }} />
         <Stack.Screen name="setnewpassword" options={{ headerShown: false }} />
         <Stack.Screen name="forgetpassword" options={{ headerShown: false }} />
         <Stack.Screen name="successmodal" options={{ headerShown: false }} />
         <Stack.Screen name="signin" options={{ headerShown: false }} />
         <Stack.Screen name='editprofile' options={{ headerShown: false }} />
         <Stack.Screen name="updatekyclevel" options={{ headerShown: false }} />
+        <Stack.Screen name="instantuserschat" options={{ headerShown: false }} />
         <Stack.Screen name="bvnverification" options={{ headerShown: false }} />
         <Stack.Screen name="profilesecurity" options={{ headerShown: false }} />
         <Stack.Screen name="changepassword" options={{ headerShown: false }} />

@@ -32,8 +32,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     onPress,
     ...rest
   } = props;
-  const bgColor = COLORS.primary;
-  const resolvedTextColor = COLORS.white;
+  
+  const bgColor = color || COLORS.primary;
+  const resolvedTextColor = textColor || COLORS.white;
 
   return (
     <TouchableOpacity

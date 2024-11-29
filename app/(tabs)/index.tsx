@@ -10,6 +10,8 @@ import { COLORS } from "@/constants";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import Profile from "./profile";
+import TerceScrow from "../tercescrow";
+import SplashSteam from "../splashsteam";
 export default function HomeScreen() {
   const { dark } = useTheme();
   console.log(dark);
@@ -26,7 +28,6 @@ export default function HomeScreen() {
         <Header />
       </View>
       <View style={{ flex: 10 }}>
-        {/* Responsive CardSwiper */}
         <View style={{ width: "100%", height: screenHeight * 0.25 }}>
           <CardSwiper />
         </View>
