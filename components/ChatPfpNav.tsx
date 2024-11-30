@@ -13,7 +13,6 @@ const ChatPfpNav: React.FC<{ image: string; name: string; status: string }> = (
   const router = useRouter();
 
   const backPressHandler = () => {
-    console.log("Navigating back...");
     router.dismissTo("/(tabs)");
   };
 

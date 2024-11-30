@@ -1,11 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { useTheme } from "@/contexts/themeContext";
 import { icons } from "@/constants";
 import { Colors } from "@/constants/Colors";
 import { COLORS } from "@/constants";
+import { Route, useRouter } from "expo-router";
 const Header = () => {
   const { dark } = useTheme();
+  const router = useRouter();
+
+  const notificationUrlHandler = () => {
+    router.push("/notificationpage");
+  };
   return (
     <View style={styles.container}>
       <View>
@@ -26,7 +32,7 @@ const Header = () => {
           Welcome to Tercescrow
         </Text>
       </View>
-      <View>
+      <Pressable onPress={notificationUrlHandler}>
         <Image
           source={icons.notification}
           style={[
@@ -37,7 +43,7 @@ const Header = () => {
           ]}
           contentFit="contain"
         />
-      </View>
+      </Pressable>
     </View>
   );
 };
