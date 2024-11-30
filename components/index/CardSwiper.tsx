@@ -1,9 +1,11 @@
-import { View, Text } from "react-native";
+import { View, Dimensions } from "react-native";
 import { StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import images from "@/constants/images";
 import Swiper from "react-native-swiper";
 import { COLORS } from "@/constants";
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const SwipCard = () => {
   return (
@@ -35,7 +37,6 @@ const SwipCard = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: 200,
   },
   slide: {
     flex: 1,
@@ -53,8 +54,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   pagination: {
-    bottom: 0,
-    marginBottom: -10,
+    bottom: screenWidth * -0.0525,
   },
   dot: {
     width: 10,

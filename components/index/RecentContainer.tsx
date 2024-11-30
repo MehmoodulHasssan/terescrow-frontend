@@ -7,36 +7,36 @@ const RecentContainer = () => {
       icon: icons.gift,
       key: "1",
       heading: "Sell Gidt Cards",
-      price: '$1200',
-      productId: 'N1,681,530',
-      date: '2:00 PM',
+      price: "$1200",
+      productId: "N1,681,530",
+      date: "2:00 PM",
       text: "Valid bro, Your account has been credited..",
     },
     {
       icon: icons.gift,
       key: "2",
       heading: "Buy Gift Cards",
-      price: '$1200',
-      productId: 'N1,681,530',
-      date: '2:00 PM',
+      price: "$1200",
+      productId: "N1,681,530",
+      date: "2:00 PM",
       text: "Valid bro, Your account has been credited..",
     },
     {
       icon: icons.bitCoin,
       key: "3",
       heading: "Sell crypto",
-      price: '$1200',
-      productId: 'N1,681,530',
-      date: '2:00 PM',
+      price: "$1200",
+      productId: "N1,681,530",
+      date: "2:00 PM",
       text: "Valid bro, Your account has been credited..",
     },
     {
       icon: icons.bitCoin,
       key: "4",
       heading: "Sell Crypto",
-      price: '$1200',
-      productId: 'N1,681,530',
-      date: '2:00 PM',
+      price: "$1200",
+      productId: "N1,681,530",
+      date: "2:00 PM",
       text: "Valid bro, Your account has been credited..",
     },
   ];
@@ -60,7 +60,6 @@ const RecentContainer = () => {
         )}
         keyExtractor={(item) => item.key}
         numColumns={1}
-        contentContainerStyle={{ paddingBottom: 20 }} 
       />
     </View>
   );
@@ -69,9 +68,7 @@ const RecentContainer = () => {
 export default RecentContainer;
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1, 
-  },
+  container: {},
   mainHeading: {
     textAlign: "right",
     fontWeight: "bold",

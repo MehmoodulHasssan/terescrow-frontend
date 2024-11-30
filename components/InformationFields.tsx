@@ -22,7 +22,14 @@ const InformationFields = () => {
     <View style={styles.container}>
       {/* Input with Counter */}
       <View style={styles.inputWithCounter}>
-        <Text style={[styles.mainText, dark ? { color: Colors.dark.text } : { color: Colors.light.text },]}>How many cards?</Text>
+        <Text
+          style={[
+            styles.mainText,
+            dark ? { color: Colors.dark.text } : { color: Colors.light.text },
+          ]}
+        >
+          How many cards?
+        </Text>
         <View style={styles.counterContainer}>
           <TouchableOpacity
             onPress={decreaseCounter}
@@ -31,7 +38,14 @@ const InformationFields = () => {
             <Text style={[styles.counterText, styles.specialCase]}>-</Text>
           </TouchableOpacity>
 
-          <Text style={[styles.counterValue, dark ? { color: Colors.dark.text } : { color: Colors.light.text },]}>{counter}</Text>
+          <Text
+            style={[
+              styles.counterValue,
+              dark ? { color: Colors.dark.text } : { color: Colors.light.text },
+            ]}
+          >
+            {counter}
+          </Text>
           <TouchableOpacity
             onPress={increaseCounter}
             style={styles.counterButton}
@@ -43,12 +57,15 @@ const InformationFields = () => {
 
       {/* Regular Input */}
       <TextInput
-        style={[styles.input, dark ? { color: Colors.dark.text } : { color: Colors.light.text },]}
+        style={[
+          styles.input,
+          dark ? { color: Colors.dark.text } : { color: Colors.light.text },
+        ]}
         keyboardType="numeric"
         placeholder="Enter amount in USD"
         placeholderTextColor={"#888"}
       />
-      <View style={{ flex: 1, marginTop: 24, }}>
+      <View style={{ flex: 1, marginTop: 24 }}>
         <CustomSelectField title="Category" />
       </View>
     </View>
@@ -72,8 +89,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 18,
-    paddingHorizontal: 12,
+    paddingVertical: 15,
+    paddingLeft: 12,
     borderWidth: 1,
     borderRadius: 12,
     borderColor: COLORS.greyscale300,

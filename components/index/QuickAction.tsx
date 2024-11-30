@@ -37,20 +37,6 @@ const QuickAction = () => {
       text: "Purchase popular crypto quickly and securely",
       route: "/buycrypto",
     },
-    {
-      icon: icons.bitCoin,
-      key: "5",
-      heading: "Buy crypto",
-      text: "Purchase popular crypto quickly and securely",
-      route: "/buycrypto",
-    },
-    {
-      icon: icons.bitCoin,
-      key: "6",
-      heading: "Buy crypto",
-      text: "Purchase popular crypto quickly and securely",
-      route: "/buycrypto",
-    },
   ];
   return (
     <View style={styles.container}>
@@ -58,26 +44,29 @@ const QuickAction = () => {
         <Text
           style={[
             styles.mainHeading,
-            dark ? { color: Colors.dark.text } : { color: Colors.light.text }
+            dark ? { color: Colors.dark.text } : { color: Colors.light.text },
           ]}
         >
           Quick Actions
         </Text>
       </View>
-      <FlatList
-        data={data}
-        scrollEnabled={false}
-        renderItem={({ item }) => (
-          <QuickBoxItem
-            icon={item.icon}
-            heading={item.heading}
-            text={item.text}
-            onSend={() => router.push(item.route as Route)}
-          />
-        )}
-        keyExtractor={(item) => item.key}
-        numColumns={2}
-      />
+      <View style={{ flex:1, marginHorizontal: 16 }}>
+        <FlatList
+          data={data}
+          scrollEnabled={false}
+          renderItem={({ item }) => (
+            <QuickBoxItem
+              icon={item.icon}
+              heading={item.heading}
+              text={item.text}
+              onSend={() => router.push(item.route as Route)}
+            />
+          )}
+          keyExtractor={(item) => item.key}
+          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          numColumns={2}
+        />
+      </View>
     </View>
   );
 };

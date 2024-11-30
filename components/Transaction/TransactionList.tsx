@@ -7,7 +7,7 @@ const TransactionList = () => {
   const { dark } = useTheme();
   const data = DUMMY_TRANS;
   return (
-    <View style={styles.container}>
+    <View>
       <View>
         <Text
           style={[
@@ -32,6 +32,7 @@ const TransactionList = () => {
         )}
         keyExtractor={(item) => item.key}
         numColumns={1}
+        scrollEnabled={false}
         contentContainerStyle={{ paddingBottom: 40 }}
       />
     </View>
@@ -39,10 +40,6 @@ const TransactionList = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginHorizontal: 16,
-  },
   mainHeading: {
     fontSize: 16,
     fontWeight: "bold",

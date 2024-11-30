@@ -56,12 +56,11 @@ export default QuickBoxItem;
 
 const styles = StyleSheet.create({
   container: {
-    width: "42%",
+    width: '47%',
     padding: 12,
     flexDirection: "column",
-    marginHorizontal: 16,
     backgroundColor: "#F7F7F7",
-    marginBottom: 30,
+    marginBottom: 20,
     borderRadius: 12,
     overflow: "hidden",
   },

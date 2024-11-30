@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NavigateBack from "@/components/NavigateBack";
 import CardCom from "@/components/CardCom";
@@ -12,25 +12,38 @@ const EbayCard = () => {
   return (
     <SafeAreaView
       style={[
+        { flex: 1 },
         dark
           ? { backgroundColor: COLORS.black }
           : { backgroundColor: COLORS.white },
       ]}
     >
-      <NavigateBack text="Ebay Card" />
-      <CardCom card={images.ebayCard} />
-      <View
-        style={{
-          height: "62%",
-          justifyContent: "space-between",
-          flexDirection: "column",
-        }}
-      >
-        <InformationFields />
-        <CustomProceed />
-      </View>
+      <ScrollView style={{ flex: 1 }}>
+        <View>
+          <NavigateBack text="Ebay Card" />
+        </View>
+        <View>
+          <CardCom card={images.ebayCard} />
+        </View>
+        <View style={styles.mainContent}>
+          <View style={[{ height: 500 }]}>
+            <InformationFields />
+          </View>
+          <View style={{ marginBottom: 10 }}>
+            <CustomProceed />
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  mainContent: {
+    flex: 1,
+    justifyContent: "space-between",
+    flexDirection: "column",
+  },
+});
 
 export default EbayCard;

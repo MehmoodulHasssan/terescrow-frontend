@@ -14,14 +14,12 @@ export default CardCom
 const styles = StyleSheet.create({
     cardContainer: {
         height: 220,
-        marginTop: 32 ,
+        marginTop: 25 ,
         marginHorizontal: 16,
-        // borderWidth : 1
     },
     cardImage: {
         width: '100%',
         height: '100%',
         borderRadius: 24,
-        // borderWidth : 1 
     }
 })

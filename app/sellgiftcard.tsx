@@ -9,7 +9,8 @@ const SellGiftCard = () => {
   const { dark } = useTheme();
   return (
     <SafeAreaView
-      style={[ {flex: 1,},
+      style={[
+        { flex: 1 },
         dark
           ? { backgroundColor: Colors.dark.background }
           : { backgroundColor: Colors.light.background },
@@ -21,7 +22,7 @@ const SellGiftCard = () => {
       <View>
         <SearchInputField />
       </View>
-      <View>
+      <View style={{ flex: 1 }}>
         <CardList />
       </View>
     </SafeAreaView>
