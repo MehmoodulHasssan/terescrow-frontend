@@ -44,6 +44,7 @@ export default function RootLayout() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="notificationpage" options={{ headerShown: false }} />
         <Stack.Screen name="tercescrow" options={{ headerShown: false }} />
         <Stack.Screen name='splashsteam' options={{ headerShown: false }} />
         <Stack.Screen name="splashcrypto" options={{ headerShown: false }} />
