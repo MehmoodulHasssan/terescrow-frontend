@@ -18,31 +18,38 @@ const EbayCard = () => {
           : { backgroundColor: COLORS.white },
       ]}
     >
-      <ScrollView style={{ flex: 1 }}>
-        <View>
-          <NavigateBack text="Ebay Card" />
-        </View>
-        <View>
-          <CardCom card={images.ebayCard} />
-        </View>
-        <View style={styles.mainContent}>
-          <View style={[{ height: 500 }]}>
+      <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          <View>
+            <NavigateBack text="Ebay" />
+          </View>
+          <View>
+            <CardCom card={images.ebayCard} />
+          </View>
+          <View>
             <InformationFields />
           </View>
-          <View style={{ marginBottom: 10 }}>
-            <CustomProceed />
-          </View>
+        </ScrollView>
+        <View style={styles.footer}>
+          <CustomProceed />
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  mainContent: {
+  container: {
     flex: 1,
-    justifyContent: "space-between",
-    flexDirection: "column",
+  },
+  scrollContent: {
+    paddingBottom: 60, 
+  },
+  footer: {
+    position: "relative",
+    bottom: 0,
+    width: "100%",
+    padding: 10,
   },
 });
 
