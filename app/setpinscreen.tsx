@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import { useRouter } from "expo-router";
+import { router, useRouter } from "expo-router";
 import { useSearchParams } from "expo-router/build/hooks";
 import Toast from "react-native-toast-message";
 import { useTheme } from "@/contexts/themeContext";
@@ -15,6 +15,7 @@ import { validationPinChange } from "@/utils/validation";
 import FONTS from "@/constants/fonts";
 import { COLORS } from "@/constants";
 import { toast } from "react-toastify";
+import Toaster from "@/components/Toaster";
 import { Formik } from "formik";
 import SuccessModal from "./successmodal";
 
@@ -33,6 +34,19 @@ const SetPinScreen: React.FC = () => {
     }
   };
 
+  const showToast = () => {
+    Toast.show({
+      type: "error",
+      text1: "Error",
+      text2:
+        "Incorrect login cradientals. Please try again or reset your password.",
+      position: "top",
+      visibilityTime: 3000,
+      autoHide: true,
+      topOffset: 50,
+    });
+  };
+
   // Handle backspace
   const handleBackspace = () => {
     setPin(pin.slice(0, -1));
@@ -45,22 +59,25 @@ const SetPinScreen: React.FC = () => {
       const enteredPin = searchParams.get("enteredPin");
 
       if (pinValue !== enteredPin) {
-        toast.error("Pins should match!", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
+        showToast();
         console.log("Pins do not match!");
         setPin([]);
         return;
       } else {
+        Toast.show({
+          type: "success",
+          text1: "Success",
+          text2:
+            "Pin confirmed successfully. You can now proceed to your dashboard.",
+          position: "top",
+          visibilityTime: 3000,
+          autoHide: true,
+          topOffset: 50,
+        });
+        router.back();
         console.log("Pins match successfully!");
       }
 
-      // Navigate or perform actions for successful PIN confirmation
       if (context === "signup") {
         push({
           pathname: "/setpinscreen",
@@ -90,7 +107,7 @@ const SetPinScreen: React.FC = () => {
           setPin([]);
         }
 
-        if (title === "Set your Pin" && context === "transactionPin") {
+        if (title === "Enter new Pin" && context === "transactionPin") {
           push({
             pathname: "/setpinscreen",
             params: { title: "Confirm your Pin", enteredPin: pinValue },
@@ -100,15 +117,7 @@ const SetPinScreen: React.FC = () => {
         }
       })
       .catch((err: { message: string }) => {
-        toast.error("Pins should match!", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          bodyStyle: { fontSize: 16, zIndex: 9999, position: "absolute", top: 0, backgroundColor: "red" },
-          pauseOnHover: true,
-          draggable: true,
-        });
+        showToast();
         setPin([]);
       });
   };

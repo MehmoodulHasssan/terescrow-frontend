@@ -38,7 +38,7 @@ const Profile = () => {
           >
             <Text
               style={{
-                color: dark ? COLORS.black : COLORS.white,
+                color: COLORS.white,
                 fontWeight: "bold",
                 fontSize: 20,
               }}
@@ -47,7 +47,7 @@ const Profile = () => {
             </Text>
             <Image
               source={icons.notification}
-              style={{ width: 30, height: 30, tintColor: dark ? COLORS.dark1 : COLORS.white }}
+              style={{ width: 30, height: 30, tintColor: COLORS.white }}
             />
           </View>
           <View style={{ paddingHorizontal: 10 }}>

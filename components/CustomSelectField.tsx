@@ -7,120 +7,61 @@ import {
   Pressable,
   TouchableOpacity,
   FlatList,
-  Animated,
-  PanResponder,
 } from "react-native";
 
-interface Option {
-  key: string;
-  label: string;
-}
-
-const options: Option[] = [
+const options = [
   { key: "1", label: "Option 1" },
   { key: "2", label: "Option 2" },
   { key: "3", label: "Option 3" },
   { key: "4", label: "Option 4" },
 ];
 
-const CustomSelectField: React.FC<{ title: string }> = (props) => {
+const CustomSelectField = ({ title }: { title: string }) => {
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [translateY] = useState(new Animated.Value(0));
-
-  // PanResponder for dragging
-  const panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderMove: (evt, gestureState) => {
-      if (gestureState.dy > 0) {
-        translateY.setValue(gestureState.dy);
-      }
-    },
-    onPanResponderRelease: (evt, gestureState) => {
-      if (gestureState.dy > 100) {
-        setModalVisible(false);
-        Animated.timing(translateY, {
-          toValue: 0,
-          duration: 300,
-          useNativeDriver: true,
-        }).start();
-      } else {
-        Animated.spring(translateY, {
-          toValue: 0,
-          useNativeDriver: true,
-        }).start();
-      }
-    },
-  });
 
   const handleSelect = (label: string) => {
-    console.log(label + "i am clicked");
     setSelectedValue(label);
-    setModalVisible(false);
-    Animated.timing(translateY, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
+    setModalVisible(false); // Close the modal immediately
   };
 
   const handleModalOpen = () => {
     setModalVisible(true);
-    Animated.timing(translateY, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
   };
 
   return (
     <View style={styles.container}>
-      {/* Select Field */}
       <TouchableOpacity style={styles.selectField} onPress={handleModalOpen}>
         <Text style={styles.selectText}>
           {selectedValue || "Select an Option"}
         </Text>
       </TouchableOpacity>
 
-      {/* Modal */}
       <Modal
         animationType="fade"
         transparent
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        {/* Backdrop */}
         <Pressable
           style={styles.backdrop}
           onPress={() => setModalVisible(false)}
         />
-
-        {/* Draggable Modal Content */}
-        <Animated.View
-          style={[
-            styles.modalContainer,
-            { transform: [{ translateY: translateY }] },
-          ]}
-          {...panResponder.panHandlers} // Make the whole modal draggable
-        >
-          <Text style={styles.modalTitle}>{props.title}</Text>
-          <View>
-            <FlatList
-              data={options}
-              keyExtractor={(item) => item.key}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.option}
-                  onPress={() => {
-                    "i am clicked";
-                  }}
-                >
-                  <Text style={styles.optionText}>{item.label}</Text>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        </Animated.View>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalTitle}>{title}</Text>
+          <FlatList
+            data={options}
+            keyExtractor={(item) => item.key}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.option}
+                onPress={() => handleSelect(item.label)}
+              >
+                <Text style={styles.optionText}>{item.label}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
       </Modal>
     </View>
   );

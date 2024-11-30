@@ -60,7 +60,7 @@ const profilesecurity = () => {
             onPress={() => {
               router.push({
                 pathname: "/setpinscreen",
-                params: { title: "Set your Pin", context: "transactionPin" },
+                params: { title: "Enter new Pin", context: "transactionPin" },
               });
             }}
           />

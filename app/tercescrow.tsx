@@ -4,7 +4,6 @@ import { ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@/contexts/themeContext";
 import { router } from "expo-router";
-import { useEffect } from "react";
 
 const TerceScrow = () => {
   const { dark } = useTheme();

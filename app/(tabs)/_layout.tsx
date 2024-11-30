@@ -1,22 +1,26 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Tabs } from "expo-router";
+import React from "react";
+import { Platform } from "react-native";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { useTheme } from '@/contexts/themeContext';
-import { COLORS } from '@/constants';
+import { HapticTab } from "@/components/HapticTab";
+import { IconSymbol } from "@/components/ui/IconSymbol";
+import TabBarBackground from "@/components/ui/TabBarBackground";
+import { Colors } from "@/constants/Colors";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { useTheme } from "@/contexts/themeContext";
+import { COLORS } from "@/constants";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const { dark } = useTheme();
 
   // Tab colors based on dark mode
-  const tabBarActiveTintColor = dark ? COLORS.white : Colors[colorScheme ?? 'light'].text;
-  const tabBarInactiveTintColor = dark ? COLORS.grayscale400 : Colors[colorScheme ?? 'light'].text;
+  const tabBarActiveTintColor = dark
+    ? COLORS.white
+    : Colors[colorScheme ?? "light"].text;
+  const tabBarInactiveTintColor = dark
+    ? COLORS.grayscale400
+    : Colors[colorScheme ?? "light"].text;
   const tabBarActiveBackgroundColor = dark ? COLORS.black : COLORS.white;
   const tabBarBackgroundColor = dark ? COLORS.black : COLORS.white;
 
@@ -32,7 +36,7 @@ export default function TabLayout() {
         tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+            position: "absolute",
             backgroundColor: tabBarBackgroundColor,
           },
           default: {
@@ -44,7 +48,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: "Home",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="house.fill" color={color} />
           ),
@@ -53,7 +57,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="chat"
         options={{
-          title: 'Chat',
+          title: "Chat",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="paperplane.fill" color={color} />
           ),
@@ -62,7 +66,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="transactions"
         options={{
-          title: 'Transactions',
+          title: "Transactions",
           tabBarIcon: ({ color }) => (
             <IconSymbol
               size={28}
@@ -75,9 +79,13 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
+          title: "Profile",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person.fill.badge.plus" color={color} />
+            <IconSymbol
+              size={28}
+              name="chevron.left.forwardslash.chevron.right"
+              color={color}
+            />
           ),
         }}
       />

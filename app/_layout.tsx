@@ -8,6 +8,7 @@ import "react-native-reanimated";
 import { ThemeProvider } from "@/contexts/themeContext";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import Toast from "react-native-toast-message";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -58,6 +59,7 @@ export default function RootLayout() {
         <Stack.Screen name="changepassword" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
         <Stack.Screen name="sellgiftcard" options={{ headerShown: false }} />
+
         <Stack.Screen name="buygiftcard" options={{ headerShown: false }} />
         <Stack.Screen name="sellcrypto" options={{ headerShown: false }}  />
         <Stack.Screen name="buycrypto" options={{ headerShown: false }}  />
@@ -86,6 +88,7 @@ export default function RootLayout() {
         <Stack.Screen name="cryptobought" options={{ headerShown: false }}  />
         <Stack.Screen name="chatwithagent" options={{ headerShown: false }}  />
       </Stack>
+      <Toast />
       <StatusBar style="auto" />
     </ThemeProvider>
   );
