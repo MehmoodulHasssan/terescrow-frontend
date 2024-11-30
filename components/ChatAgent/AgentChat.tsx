@@ -13,6 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { COLORS } from "@/constants";
 import { Image } from "expo-image";
+import { useTheme } from "@/contexts/themeContext";
 
 type Message = {
   id: string;
@@ -22,6 +23,7 @@ type Message = {
 };
 
 const AgentChat: React.FC = () => {
+  const { dark } = useTheme();
   const [messages, setMessages] = useState<Message[]>([
     { id: "1", text: "Hello! Send details", isUser: true },
     { id: "2", text: "Checking!!!", isUser: false },
@@ -145,7 +147,15 @@ const AgentChat: React.FC = () => {
   );
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    <KeyboardAvoidingView
+      style={[
+        styles.container,
+        dark
+          ? { backgroundColor: COLORS.black }
+          : { backgroundColor: COLORS.white },
+      ]}
+      behavior="padding"
+    >
       <FlatList
         ref={flatListRef}
         data={messages}
@@ -154,23 +164,39 @@ const AgentChat: React.FC = () => {
         contentContainerStyle={styles.chatContainer}
         onContentSizeChange={scrollToBottom}
       />
+      {/* message sending component */}
       <View style={styles.inputContainer}>
         <TouchableOpacity
           onPress={() => setIsImagePickerOpen(true)}
           style={styles.iconButton}
         >
-          <Ionicons name="image-outline" size={24} color="black" />
+          <Ionicons
+            name="image-outline"
+            size={24}
+            color={dark ? COLORS.white : COLORS.black}
+          />
         </TouchableOpacity>
         <TextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            dark ? { color: COLORS.white } : { color: COLORS.black },
+          ]}
           placeholder="Type a message..."
+          placeholderTextColor={dark ? COLORS.white : COLORS.black}
           value={input}
           onChangeText={setInput}
           multiline
           maxLength={500}
         />
         <TouchableOpacity onPress={sendMessage} style={styles.sendMessage}>
-          <Text style={{ fontWeight: "bold" }}>Send</Text>
+          <Text
+            style={[
+              { fontWeight: "bold" },
+              dark ? { color: COLORS.white } : { color: COLORS.black },
+            ]}
+          >
+            Send
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -275,7 +301,11 @@ const styles = StyleSheet.create({
     width: "80%",
     alignItems: "center",
   },
-  optionText: { fontSize: 16, fontWeight: "bold", color: COLORS.black },
+  optionText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: COLORS.black,
+  },
   previewContainer: {
     flex: 1,
     backgroundColor: "#000",

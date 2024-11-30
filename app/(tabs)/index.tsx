@@ -1,45 +1,41 @@
-import { Image, StyleSheet, Platform, View, Dimensions } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import Header from "@/components/index/Header";
 import CardSwiper from "@/components/index/CardSwiper";
 import { SafeAreaView } from "react-native-safe-area-context";
-import profile from "./profile";
 import QuickAction from "@/components/index/QuickAction";
 import RecentContainer from "@/components/index/RecentContainer";
 import { useTheme } from "@/contexts/themeContext";
 import { COLORS } from "@/constants";
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
-import Profile from "./profile";
-import TerceScrow from "../tercescrow";
-import SplashSteam from "../splashsteam";
 export default function HomeScreen() {
   const { dark } = useTheme();
   console.log(dark);
   return (
     <SafeAreaView
       style={[
-        { flex: 2 },
+        { flex: 1 },
         dark
           ? { backgroundColor: COLORS.black }
           : { backgroundColor: COLORS.white },
       ]}
     >
-      <View style={{ flex: 1 }}>
+      <View>
         <Header />
       </View>
-      <View style={{ flex: 10 }}>
-        <View style={{ width: "100%", height: screenHeight * 0.25 }}>
+      <ScrollView style={{ flex: 1 }}>
+        {/* Responsive CardSwiper */}
+        <View style={{ height: 180 }}>
           <CardSwiper />
         </View>
         {/* Responsive QuickAction */}
-        <View>
+        <View style={{ flex: 1 }}>
           <QuickAction />
         </View>
         {/* Responsive RecentContainer */}
-        <View style={{ width: "100%", height: screenHeight * 0.2 }}>
+        <View style={{ flex: 1 }}>
           <RecentContainer />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

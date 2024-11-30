@@ -15,8 +15,8 @@ export default function TabLayout() {
   const { dark } = useTheme();
 
   // Tab colors based on dark mode
-  const tabBarActiveTintColor = dark ? COLORS.white : Colors[colorScheme ?? 'light'].tint;
-  const tabBarInactiveTintColor = dark ? COLORS.grayscale400 : Colors[colorScheme ?? 'light'].tint;
+  const tabBarActiveTintColor = dark ? COLORS.white : Colors[colorScheme ?? 'light'].text;
+  const tabBarInactiveTintColor = dark ? COLORS.grayscale400 : Colors[colorScheme ?? 'light'].text;
   const tabBarActiveBackgroundColor = dark ? COLORS.black : COLORS.white;
   const tabBarBackgroundColor = dark ? COLORS.black : COLORS.white;
 

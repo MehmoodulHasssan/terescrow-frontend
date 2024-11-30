@@ -21,8 +21,6 @@ export default CustomProceed;
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
-    bottom: 0,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",

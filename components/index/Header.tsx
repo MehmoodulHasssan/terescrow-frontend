@@ -33,7 +33,7 @@ const Header = () => {
             styles.image,
             dark
               ? { tintColor: Colors.dark.tint }
-              : { tintColor: Colors.light.tint },
+              : { tintColor: COLORS.black },
           ]}
           contentFit="contain"
         />

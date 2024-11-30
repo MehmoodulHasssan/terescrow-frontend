@@ -4,14 +4,24 @@ import NavigateBack from "@/components/NavigateBack";
 import SearchInputField from "@/components/SearchInputField";
 import { DUMMY_GIFT_SOLDS_BOUGHT } from "@/utils/dummyTrans";
 import TransactionData from "@/components/TransactionData";
+import { useTheme } from "@/contexts/themeContext";
+import { COLORS } from "@/constants";
 
 const GiftCardSold = () => {
+  const { dark } = useTheme();
   const data = DUMMY_GIFT_SOLDS_BOUGHT;
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView
+      style={[
+        { flex: 1 },
+        dark
+          ? { backgroundColor: COLORS.black }
+          : { backgroundColor: COLORS.white },
+      ]}
+    >
       <NavigateBack text="Gift Card Sold" />
       <SearchInputField />
-      <View style={{ flex:1 }}>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={data}
           renderItem={({ item }) => (

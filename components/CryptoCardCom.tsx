@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 33,
     marginHorizontal: 16,
+    marginTop: 25 ,
     backgroundColor: COLORS.grayscale200,
-    marginBottom: 60
   },
   cardContainer: {
     height: 120,

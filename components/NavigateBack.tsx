@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
-import { icons } from "@/constants";
+import { COLORS, icons } from "@/constants";
 import { Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { useTheme } from "@/contexts/themeContext";
@@ -29,7 +29,7 @@ const NavigateBack: React.FC<{ text: string }> = ({ text }) => {
             styles.backIcon,
             dark
               ? { tintColor: Colors.dark.tint }
-              : { tintColor: Colors.light.tint },
+              : { tintColor: COLORS.black },
           ]}
         />
       </Pressable>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingTop: 12,
   },
   pressableArea: {
     padding: 8,

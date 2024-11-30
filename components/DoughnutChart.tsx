@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { StyleSheet, ScrollView, Text, View } from "react-native";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
 import PieChart from "react-native-pie-chart";
+const { width: screenWidth } = Dimensions.get("window");
 
 export default class TestChart extends Component {
   render() {
-    const widthAndHeight = 300;
+    const widthAndHeight = screenWidth * 0.6; // 300
     const series = [200, 500, 300, 500];
     const sliceColor = ["#0EF302", "#048096", "#191473", "#CA3900"];
 
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <View style={styles.container}>
           <View style={styles.chartContainer}>
             <PieChart
@@ -49,7 +50,7 @@ export default class TestChart extends Component {
             </View>
           </View>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "50%",
     left: "50%",
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "bold",
     transform: "translate(-50%, -50%)",
   },
