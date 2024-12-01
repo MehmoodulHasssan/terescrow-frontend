@@ -70,7 +70,9 @@ const SplashCrypto = () => {
               title="Back"
               onPress={() => router.back()}
             />
-            <Button title="Next" style={{ width: "50%" }} onPress={() => {}} />
+            <Button title="Next" style={{ width: "50%" }
+          
+          } onPress={() => { router.push('/signup') }} />
           </View>
           <View
             style={{

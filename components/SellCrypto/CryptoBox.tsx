@@ -3,80 +3,79 @@ import { FlatList, View, Text, StyleSheet } from "react-native";
 import CryptoItem from "./CryptoItem";
 import { Route, useRouter } from "expo-router";
 
+interface CryptoBox {
+  id: string;
+  icon: string; // Assuming `images` contains paths or URIs to the images
+  text: string;
+  heading: string;
+}
+
 const CryptoBox = () => {
   const router = useRouter();
-  const data = [
+
+  const data: CryptoBox[] = [
     {
-      key: "1",
+      id: "1",
       icon: icons.btc,
       heading: "BTC",
       text: "Bitcoin Wallet",
-      route: "/btc",
     },
     {
       icon: icons.usdt,
-      key: "2",
+      id: "2",
       heading: "USDT",
       text: "Tether Wallet",
-      route: "/usdt",
     },
     {
       icon: icons.eth,
-      key: "3",
+      id: "3",
       heading: "ETH",
       text: "Ethereum Wallet",
-      route: "/eth",
     },
     {
       icon: icons.solana,
-      key: "4",
+      id: "4",
       heading: "SOLANA",
       text: "Tether Wallet",
-      route: "/solana",
     },
     {
       icon: icons.shibaInu,
-      key: "5",
+      id: "5",
       heading: "SHIBU INU",
       text: "Tether Wallet",
-      route: "shibuinu",
     },
     {
       icon: icons.dogeCoin,
-      key: "6",
+      id: "6",
       heading: "DOGE COIN",
       text: "Tether Wallet",
-      route: "/dogecoin",
     },
     {
       icon: icons.dollarCoin,
-      key: "7",
+      id: "7",
       heading: "USDC",
       text: "Ethereum Wallet",
-      route: "/usdc",
     },
     {
       icon: icons.bnb,
-      key: "8",
+      id: "8",
       heading: "BNB",
       text: "Tether Wallet",
-      route: "/bnb",
     },
     {
       icon: icons.tonCoin,
-      key: "9",
+      id: "9",
       heading: "TONCOIN",
       text: "Ethereum Wallet",
-      route: "/toncoin",
     },
     {
       icon: icons.tron,
-      key: "10",
+      id: "10",
       heading: "TRON",
       text: "Tether Wallet",
-      route: "/tron",
     },
   ];
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -86,10 +85,10 @@ const CryptoBox = () => {
             icon={item.icon}
             heading={item.heading}
             text={item.text}
-            onSend={() => router.push(item.route as Route)}
+            onSend={() => router.push(`/crypto/${item.id}` as string)} // Use `as string` for type assertion
           />
         )}
-        keyExtractor={(item) => item.key}
+        keyExtractor={(item) => item.id}
         numColumns={2}
       />
     </View>
